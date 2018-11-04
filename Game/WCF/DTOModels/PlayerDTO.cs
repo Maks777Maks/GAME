@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace WCF.DTOModels
 {
-    public class Player
+    [DataContract]
+    public class PlayerDTO
     {
-        [Key]
+        [DataMember]
         public int ID { get; set; }
-        [Required]
+        [DataMember]
         public string NickName { get; set; }
-        [Required]
+        [DataMember]
         public string Password { get; set; }
-
+        [DataMember]
         public int Victory { get; set; }
-
+        [DataMember]
         public int Draw { get; set; }
-
+        [DataMember]
         public int Losing { get; set; }
-
     }
 }
