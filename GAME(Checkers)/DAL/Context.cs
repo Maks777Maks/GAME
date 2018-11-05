@@ -13,7 +13,7 @@ namespace DAL
         {
         }
 
-        public DbSet<Player>Users { get; set; }
+        public DbSet<Player>Players { get; set; }
 
 
     }
