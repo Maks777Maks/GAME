@@ -25,8 +25,7 @@ namespace UI_Checkers_.Windows
         BitmapImage checkwhite = new BitmapImage(new Uri(@"\Icon\2.png", UriKind.Relative));
         BitmapImage kingblack = new BitmapImage(new Uri(@"\Icon\7.png", UriKind.Relative));
         BitmapImage kingwhite = new BitmapImage(new Uri(@"\Icon\8.png", UriKind.Relative));
-        BitmapImage sound_on = new BitmapImage(new Uri(@"C:\Users\User\Desktop\Шашки\шашки\Sound-on-icon.png"));
-        BitmapImage sound_of = new BitmapImage(new Uri(@"C:\Users\User\Desktop\Шашки\шашки\Sound-off-icon.png"));
+        
 
         int currentsong = 0;
         List<string> Songs = new List<string> { "1", "2", "3", "4", "5", "6", "7" };
@@ -44,7 +43,7 @@ namespace UI_Checkers_.Windows
             //{
 
             //}
-            Music.Source = sound_on;
+            Music.Content = (Canvas)this.TryFindResource("sound_mute");
 
             B8.Source = checkblack;
             D8.Source = checkblack;
@@ -77,19 +76,19 @@ namespace UI_Checkers_.Windows
         {
             if (music == false)
             {
+                Music.Content = (Canvas)this.TryFindResource("sound_3");
                 player.Open(new Uri($@"Music/{Songs[currentsong]}.mp3", UriKind.Relative));
                 currentsong++;
                 player.MediaEnded += Player_MediaEnded;
                 player.Play();
-                // player.Position = TimeSpan.FromMinutes(3);
                 music = true;
             }
             else
             {
+                Music.Content = (Canvas)this.TryFindResource("sound_mute");
                 player.Pause();
                 music = false;
             }
-
         }
 
         private void Player_MediaEnded(object sender, EventArgs e)
