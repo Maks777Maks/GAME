@@ -53,9 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IContract.cs" />
+    <Compile Include="Contracts\IMove.cs" />
     <Compile Include="DTOModels\PlayerDTO.cs" />
+    <Compile Include="Logic\Chekmove.cs" />
+    <Compile Include="Logic\MakeMove.cs" />
+    <Compile Include="Logic\Ways.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Contract.cs" />
+    <Compile Include="Services\ServiceMove.cs" />
     <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\Move.cs" />
   </ItemGroup>

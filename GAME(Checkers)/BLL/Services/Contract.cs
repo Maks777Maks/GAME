@@ -30,24 +30,39 @@ namespace BLL.Services
 
 
 
-        public void AddPlayer(PlayerDTO player)
+        public PlayerDTO AddPlayer(PlayerDTO player)
         {
+            PlayerDTO p=new PlayerDTO();
             Repository<Player> repository = new Repository<Player>();
 
+            foreach(Player i in repository.GetAll())
+            {
+                if(i.NickName==player.NickName&&i.Password==player.Password)
+                {
+                    p = Mapper.PlayerDTOFromPlayer(i);
+                    return p;
+                }
+            }
+
+
             repository.Create(Mapper.PlayerFromDTO(player));
+
+            foreach (Player i in repository.GetAll())
+            {
+                if (i.NickName == player.NickName && i.Password == player.Password)
+                {
+                    p = Mapper.PlayerDTOFromPlayer(i);
+                    return p;
+                }
+            }
+            return p;
            
         }
 
 
 
 
-        public void DeletePlayer(PlayerDTO player)
-        {
-            Repository<Player> repository = new Repository<Player>();
-
-            repository.Delete(Mapper.PlayerFromDTO(player));
-        }
-
+       
 
 
 

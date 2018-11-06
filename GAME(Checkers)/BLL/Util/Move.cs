@@ -20,6 +20,5 @@ namespace BLL.Util
 
         public bool goldWay { get; set; }
 
-
     }
 }

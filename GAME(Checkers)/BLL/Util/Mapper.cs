@@ -23,5 +23,18 @@ namespace BLL.Util
         }
 
 
+        public static PlayerDTO PlayerDTOFromPlayer(Player player)
+        {
+            PlayerDTO result = new PlayerDTO();
+            result.ID = player.ID;
+            result.NickName = player.NickName;
+            result.Password = player.Password;
+            result.Losing = player.Losing;
+            result.Victory = player.Victory;
+            result.Draw = player.Draw;
+            return result;
+        }
+
+
     }
 }

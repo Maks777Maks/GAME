@@ -1,4 +1,4 @@
-﻿using BLL.DTOModels;
+﻿using BLL.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 namespace BLL.Contracts
 {
     [ServiceContract]
-    public interface IContract
+   public  interface IMove
     {
         [OperationContract]
-        List<PlayerDTO> GetPlayers();
+        List<Move> MakeMove(List<Move>moves);
+
 
         [OperationContract]
-        PlayerDTO AddPlayer(PlayerDTO player);
-
-       
+        List<Move> ChekMove(Move move);
 
 
     }
