@@ -16,9 +16,5 @@ namespace BLL.Contracts
 
         [OperationContract]
         PlayerDTO AddPlayer(PlayerDTO player);
-
-       
-
-
     }
 }
