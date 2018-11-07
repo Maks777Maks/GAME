@@ -4,6 +4,7 @@ using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using WCF.Contracts;
@@ -12,11 +13,34 @@ using WCF.Util;
 
 namespace WCF.Services
 {
-    class Contract : IContract
+    class Contract : IContract, ICallback
     {
         private readonly Context context;
-
         private Player Player;
+        private static List<ICallbackDuplex> contracts = new List<ICallbackDuplex>();
+
+        public void StartGame(PlayerDTO player)
+        {
+            ICallbackDuplex callback = OperationContext.Current.GetCallbackChannel<ICallbackDuplex>();
+            contracts.Add(callback);
+            if (contracts.Count == 2)
+            {
+                Random rand = new Random();
+                int a = rand.Next(100);
+                int b = rand.Next(100);
+                if (a < b)
+                {
+                    contracts[0].GetInfo(true);
+                    contracts[1].GetInfo(false);
+                }
+                else
+                {
+                    contracts[0].GetInfo(false);
+                    contracts[1].GetInfo(true);
+                }
+                contracts.Clear();
+            }
+        }
 
 
 
