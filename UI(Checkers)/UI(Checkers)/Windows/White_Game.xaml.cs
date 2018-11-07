@@ -106,5 +106,10 @@ namespace UI_Checkers_.Windows
         {
             player.Volume = slider.Value;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

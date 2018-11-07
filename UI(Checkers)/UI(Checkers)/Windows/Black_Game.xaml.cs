@@ -26,10 +26,7 @@ namespace UI_Checkers_.Windows
         BitmapImage checkblack = new BitmapImage(new Uri(@"\Icon\1.png",UriKind.Relative));
         BitmapImage checkwhite = new BitmapImage(new Uri(@"\Icon\2.png",UriKind.Relative));
         BitmapImage kingblack = new BitmapImage(new Uri(@"\Icon\7.png", UriKind.Relative));
-        BitmapImage kingwhite = new BitmapImage(new Uri(@"\Icon\8.png", UriKind.Relative));
-        //BitmapImage sound_on = new BitmapImage(new Uri(@"C:\Users\User\Desktop\Шашки\шашки\Sound-on-icon.png"));
-        //BitmapImage sound_of = new BitmapImage(new Uri(@"C:\Users\User\Desktop\Шашки\шашки\Sound-off-icon.png"));
-        //BitmapImage sound_on=new BitmapImage(this.TryFindResource("sound_3"))
+        BitmapImage kingwhite = new BitmapImage(new Uri(@"\Icon\8.png", UriKind.Relative));       
 
         int currentsong = 0;
         List<string> Songs = new List<string> { "1","2","3","4","5","6","7" };
@@ -113,6 +110,9 @@ namespace UI_Checkers_.Windows
             player.Volume = slider.Value;
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

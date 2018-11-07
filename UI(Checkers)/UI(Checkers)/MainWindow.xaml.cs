@@ -22,7 +22,7 @@ namespace UI_Checkers_
     /// </summary>
     public partial class MainWindow : Window
     {
-        Player player = new Player();
+        PlayerUI player = new PlayerUI();
 
         public MainWindow()
         {

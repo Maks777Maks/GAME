@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI_Checkers_.Classes
 {
-    public class Player
+    public class PlayerUI
     {
         public int ID { get; set; }
 
