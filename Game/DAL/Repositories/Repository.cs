@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL;
+using DAL.Interfaces;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace DAL.Repositories
     {
 
 
-        private readonly Context _context;
+        private readonly DbContext _context;
         private readonly DbSet<T> _set;
         //private readonly DbSet<Order> _order;
 
