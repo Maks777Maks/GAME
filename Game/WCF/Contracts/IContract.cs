@@ -13,5 +13,8 @@ namespace WCF.Contracts
     {
         [OperationContract]
         List<PlayerDTO> GetPlayers();
+
+        [OperationContract]
+        PlayerDTO AddPlayer(string a, string b);
     }
 }

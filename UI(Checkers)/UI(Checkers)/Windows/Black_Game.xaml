@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
-        Title="Checkers" Height="740" Width="900">
+        Title="Checkers" Height="740" Width="900"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="FillPath" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#FFEFCF38" Offset="0"/>

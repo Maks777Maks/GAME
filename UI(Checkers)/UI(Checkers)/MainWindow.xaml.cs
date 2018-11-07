@@ -29,10 +29,11 @@ namespace UI_Checkers_
             InitializeComponent();
             //Autorization autorization = new Autorization();
             //autorization.ShowDialog();
+            //player = autorization.player;
             //White_Game white_game = new White_Game();
             //white_game.ShowDialog();
-            Black_Game black_game = new Black_Game();
-            black_game.ShowDialog();
+            //Black_Game black_game = new Black_Game();
+            //black_game.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

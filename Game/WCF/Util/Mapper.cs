@@ -11,7 +11,7 @@ namespace WCF.Util
    public static class Mapper
     {
 
-        public static Player PhoneFromDTO(PlayerDTO playerdto)
+        public static Player PlayerFromDTO(PlayerDTO playerdto)
         {
             Player result = new Player();
             result.ID = playerdto.ID;
@@ -22,5 +22,21 @@ namespace WCF.Util
             result.Draw = playerdto.Draw;
             return result;
         }
+
+
+        public static PlayerDTO PlayerDTOFromPlayer(Player player)
+        {
+            PlayerDTO result = new PlayerDTO();
+            result.ID = player.ID;
+            result.NickName = player.NickName;
+            result.Password = player.Password;
+            result.Losing = player.Losing;
+            result.Victory = player.Victory;
+            result.Draw = player.Draw;
+            return result;
+        }
+
+
     }
 }
+

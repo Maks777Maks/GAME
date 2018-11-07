@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCF.DTOModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCF.DTOModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfPlayerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayerDTO" nillable="true" type="tns:PlayerDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayerDTO" nillable="true" type="tns:ArrayOfPlayerDTO" />
+  <xs:complexType name="PlayerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Draw" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Losing" type="xs:int" />
+      <xs:element minOccurs="0" name="NickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Victory" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerDTO" nillable="true" type="tns:PlayerDTO" />
+</xs:schema>

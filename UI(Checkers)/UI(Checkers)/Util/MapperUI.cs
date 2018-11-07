@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UI_Checkers_.Classes;
+using UI_Checkers_.ServiceReference1;
 
 namespace UI_Checkers_.Util
 {
@@ -33,28 +34,28 @@ namespace UI_Checkers_.Util
             return result;
         }
 
-        public static MoveUI PlayerForDTO(Move move)
-        {
-            MoveUI result = new MoveUI();
-            result.Name = move.Name;
-            result.Color = move.Color;
-            result.Queen = move.Queen;
-            result.Border = move.Border;
-            result.doubleWay = move.doubleWay;
-            result.goldWay = move.goldWay;
-            return result;
-        }
+        //public static MoveUI PlayerForDTO(Move move)
+        //{
+        //    MoveUI result = new MoveUI();
+        //    result.Name = move.Name;
+        //    result.Color = move.Color;
+        //    result.Queen = move.Queen;
+        //    result.Border = move.Border;
+        //    result.doubleWay = move.doubleWay;
+        //    result.goldWay = move.goldWay;
+        //    return result;
+        //}
 
-        public static MoveUI PlayerForDTO(Move move)
-        {
-            MoveUI result = new MoveUI();
-            result.Name = move.Name;
-            result.Color = move.Color;
-            result.Queen = move.Queen;
-            result.Border = move.Border;
-            result.doubleWay = move.doubleWay;
-            result.goldWay = move.goldWay;
-            return result;
-        }
+        //public static MoveUI PlayerForDTO(Move move)
+        //{
+        //    MoveUI result = new MoveUI();
+        //    result.Name = move.Name;
+        //    result.Color = move.Color;
+        //    result.Queen = move.Queen;
+        //    result.Border = move.Border;
+        //    result.doubleWay = move.doubleWay;
+        //    result.goldWay = move.goldWay;
+        //    return result;
+        //}
     }
 }

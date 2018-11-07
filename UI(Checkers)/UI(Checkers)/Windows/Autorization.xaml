@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
-        Title="Autorization" Height="300" Width="300">
+        Title="Autorization" Height="500" Width="500">
     <Grid>
+        <StackPanel>
+            <TextBox Name="Nickname" Height="100"/>
+            <PasswordBox Name="Password" Height="100"/>
+            <Button Click="Button_Click" Content="OK"/>
+        </StackPanel>
         
     </Grid>
 </Window>
