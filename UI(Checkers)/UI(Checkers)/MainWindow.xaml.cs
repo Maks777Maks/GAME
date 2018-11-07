@@ -38,12 +38,18 @@ namespace UI_Checkers_
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Black_Game game = new Black_Game();
+            //bool start = StartGame();
+            //if (start == true)
+            //{
+            //    White_Game white_game = new White_Game();
+            //    white_game.ShowDialog();
+            //}
+            //else
+            //{
+            //    Black_Game black_game = new Black_Game();
+            //    black_game.ShowDialog();
+            //}
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            White_Game game = new White_Game();
-        }
+        
     }
 }
