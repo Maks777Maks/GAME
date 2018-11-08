@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Checkers_.Classes;
+using UI_Checkers_.ServiceReference1;
 using UI_Checkers_.Windows;
 
 namespace UI_Checkers_
@@ -22,23 +24,36 @@ namespace UI_Checkers_
     /// </summary>
     public partial class MainWindow : Window
     {
+        public CallBackUI callbackhandler = new CallBackUI();
         PlayerUI player = new PlayerUI();
 
         public MainWindow()
         {
             InitializeComponent();
-            //Autorization autorization = new Autorization();
-            //autorization.ShowDialog();
-            //player = autorization.player;
+           // Autorization autorization = new Autorization();
+          //  autorization.ShowDialog();
+            //player.ID = autorization.player.ID;
+            //player.NickName = autorization.player.NickName;
+            //player.Password = autorization.player.Password;
+            //player.Victory = autorization.player.Victory;
+            //player.Losing = autorization.player.Losing;
+            //player.Draw = autorization.player.Draw;
+
+
+
             //White_Game white_game = new White_Game();
             //white_game.ShowDialog();
             //Black_Game black_game = new Black_Game();
             //black_game.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //bool start = StartGame();
+            InstanceContext context = new InstanceContext(callbackhandler);
+            ServiceReference1.CallbackClient client = new CallbackClient(context);
+            this.Title = "Wait pls";
+            await client.StartGameAsync(null);
+            this.Title = "Done";
             //if (start == true)
             //{
             //    White_Game white_game = new White_Game();

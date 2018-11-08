@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
-        Title="Checkers" Height="740" Width="900"
+        Title="Checkers" Height="740" Width="800"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -32,7 +32,7 @@
             <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="640*"/>
             <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

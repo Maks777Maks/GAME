@@ -198,4 +198,59 @@ namespace UI_Checkers_.ServiceReference1 {
             return base.Channel.AddPlayerAsync(a, b);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ICallback", CallbackContract=typeof(UI_Checkers_.ServiceReference1.ICallbackCallback))]
+    public interface ICallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallback/StartGame", ReplyAction="http://tempuri.org/ICallback/StartGameResponse")]
+        void StartGame(UI_Checkers_.ServiceReference1.PlayerDTO player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallback/StartGame", ReplyAction="http://tempuri.org/ICallback/StartGameResponse")]
+        System.Threading.Tasks.Task StartGameAsync(UI_Checkers_.ServiceReference1.PlayerDTO player);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICallbackCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICallback/GetInfo")]
+        void GetInfo(bool b);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICallbackChannel : UI_Checkers_.ServiceReference1.ICallback, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CallbackClient : System.ServiceModel.DuplexClientBase<UI_Checkers_.ServiceReference1.ICallback>, UI_Checkers_.ServiceReference1.ICallback {
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void StartGame(UI_Checkers_.ServiceReference1.PlayerDTO player) {
+            base.Channel.StartGame(player);
+        }
+        
+        public System.Threading.Tasks.Task StartGameAsync(UI_Checkers_.ServiceReference1.PlayerDTO player) {
+            return base.Channel.StartGameAsync(player);
+        }
+    }
 }

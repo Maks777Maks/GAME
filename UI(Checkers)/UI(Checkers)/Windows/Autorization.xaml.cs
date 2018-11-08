@@ -35,6 +35,7 @@ namespace UI_Checkers_.Windows
             player=MapperUI.PlayerFromDTO(client.AddPlayer(Nickname.Text, Password.Password));
             MessageBox.Show(player.ID.ToString());
             MessageBox.Show(player.NickName);
+            //client.
         }
     }
 }

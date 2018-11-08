@@ -19,11 +19,14 @@ namespace WCF.Services
         private Player Player;
         private static List<ICallbackDuplex> contracts = new List<ICallbackDuplex>();
 
+       
+
         public void StartGame(PlayerDTO player)
         {
             ICallbackDuplex callback = OperationContext.Current.GetCallbackChannel<ICallbackDuplex>();
             contracts.Add(callback);
-            if (contracts.Count == 2)
+            Logger.Log("Player join");
+            if (contracts.Count % 2 == 0)
             {
                 Random rand = new Random();
                 int a = rand.Next(100);
