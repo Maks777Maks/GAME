@@ -13,7 +13,7 @@ using WCF.Util;
 
 namespace WCF.Services
 {
-    class Contract : IContract, ICallback
+    class Contract : IContract, ICallback, IMove
     {
         private readonly Context context;
         private Player Player;
@@ -97,6 +97,21 @@ namespace WCF.Services
 
             return result;
         
+        }
+
+        public List<Move> MakeMove(List<Move> moves)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Move> ChekMove(Move moves)
+        {
+            Move move = new Move();
+            List<Move> list = new List<Move>();
+            move.Name = "_g5";
+            list.Add(move);
+            return list;
+            
         }
     }
 }

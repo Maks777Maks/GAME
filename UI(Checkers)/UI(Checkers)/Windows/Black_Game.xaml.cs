@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_Checkers_.Classes;
+using UI_Checkers_.Util;
 using WMPLib;
 
 namespace UI_Checkers_.Windows
@@ -32,7 +34,7 @@ namespace UI_Checkers_.Windows
         List<string> Songs = new List<string> { "1","2","3","4","5","6","7" };
 
         bool music = false;
-        bool white = false;
+        bool first = false;
 
         public Black_Game()
         {
@@ -112,7 +114,26 @@ namespace UI_Checkers_.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var tmp = sender as Button;
+            MoveUI move = new MoveUI();
+            move.Name = tmp.Name;
+            ServiceReference1.MoveClient contr = new ServiceReference1.MoveClient();
+           // contr.ChekMove(MapperUI. )
 
+            MessageBox.Show(tmp.Name);
+            _g1.BorderBrush = Brushes.Red;
+            if (first==true)
+            {
+
+                first = false;
+                return;
+            }
+            else
+            {
+
+                first = true;
+                return;
+            }
         }
     }
 }

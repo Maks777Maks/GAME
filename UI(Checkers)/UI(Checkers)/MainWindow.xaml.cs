@@ -30,8 +30,8 @@ namespace UI_Checkers_
         public MainWindow()
         {
             InitializeComponent();
-           // Autorization autorization = new Autorization();
-          //  autorization.ShowDialog();
+              //Autorization autorization = new Autorization();
+              //autorization.ShowDialog();
             //player.ID = autorization.player.ID;
             //player.NickName = autorization.player.NickName;
             //player.Password = autorization.player.Password;
