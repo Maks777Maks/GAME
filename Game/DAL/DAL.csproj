@@ -31,12 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -53,9 +51,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Interfaces\IRepos.cs" />
-    <Compile Include="Migrations\201811071056318_m1.cs" />
-    <Compile Include="Migrations\201811071056318_m1.Designer.cs">
-      <DependentUpon>201811071056318_m1.cs</DependentUpon>
+    <Compile Include="Migrations\201811072135239_migration1.cs" />
+    <Compile Include="Migrations\201811072135239_migration1.Designer.cs">
+      <DependentUpon>201811072135239_migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Player.cs" />
@@ -63,12 +61,14 @@
     <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811071056318_m1.resx">
-      <DependentUpon>201811071056318_m1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811072135239_migration1.resx">
+      <DependentUpon>201811072135239_migration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
