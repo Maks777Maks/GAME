@@ -55,10 +55,12 @@
     <Compile Include="Contracts\ICallback.cs" />
     <Compile Include="Contracts\ICallbackDuplex.cs" />
     <Compile Include="Contracts\IContract.cs" />
+    <Compile Include="Contracts\IMove.cs" />
     <Compile Include="DTOModels\PlayerDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Contract.cs" />
-    <Compile Include="Util\Cell.cs" />
+    <Compile Include="Util\Move.cs" />
+    <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\Mapper.cs" />
   </ItemGroup>
   <ItemGroup>

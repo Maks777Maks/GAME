@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WCF.Util
 {
-   public class Cell
+   public class Move
     {
         public string Name { get; set; }
 

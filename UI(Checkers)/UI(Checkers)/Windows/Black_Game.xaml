@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
-        Title="Checkers" Height="740" Width="900"
+        Title="Checkers" Height="740" Width="800"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -32,7 +32,7 @@
             <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="640*"/>
             <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -105,8 +105,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0" Background="#FFF5C72B"/>
-            <Button Grid.Column="1" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
+            <Button Name="g1" Grid.Column="1" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="_g1"  BorderThickness="5">
                     <Image Name="G1"/>
                 </Border>
             </Button>
@@ -224,8 +224,8 @@
                     <Image Name="A5"/>
                 </Border>
             </Button>
-            <Button Grid.Column="0" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
+            <Button Name="h6" Grid.Column="0" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="_h6" BorderThickness="5">
                     <Image Name="H6"/>
                 </Border>
             </Button>

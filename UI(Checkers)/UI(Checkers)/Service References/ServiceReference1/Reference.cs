@@ -138,6 +138,131 @@ namespace UI_Checkers_.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Move", Namespace="http://schemas.datacontract.org/2004/07/WCF.Util")]
+    [System.SerializableAttribute()]
+    public partial class Move : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool BorderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool QueenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool doubleWayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool goldWayField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Border {
+            get {
+                return this.BorderField;
+            }
+            set {
+                if ((this.BorderField.Equals(value) != true)) {
+                    this.BorderField = value;
+                    this.RaisePropertyChanged("Border");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Color {
+            get {
+                return this.ColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
+                    this.ColorField = value;
+                    this.RaisePropertyChanged("Color");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Queen {
+            get {
+                return this.QueenField;
+            }
+            set {
+                if ((this.QueenField.Equals(value) != true)) {
+                    this.QueenField = value;
+                    this.RaisePropertyChanged("Queen");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool doubleWay {
+            get {
+                return this.doubleWayField;
+            }
+            set {
+                if ((this.doubleWayField.Equals(value) != true)) {
+                    this.doubleWayField = value;
+                    this.RaisePropertyChanged("doubleWay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool goldWay {
+            get {
+                return this.goldWayField;
+            }
+            set {
+                if ((this.goldWayField.Equals(value) != true)) {
+                    this.goldWayField = value;
+                    this.RaisePropertyChanged("goldWay");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IContract")]
     public interface IContract {
@@ -196,6 +321,122 @@ namespace UI_Checkers_.ServiceReference1 {
         
         public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.PlayerDTO> AddPlayerAsync(string a, string b) {
             return base.Channel.AddPlayerAsync(a, b);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ICallback", CallbackContract=typeof(UI_Checkers_.ServiceReference1.ICallbackCallback))]
+    public interface ICallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallback/StartGame", ReplyAction="http://tempuri.org/ICallback/StartGameResponse")]
+        void StartGame(UI_Checkers_.ServiceReference1.PlayerDTO player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallback/StartGame", ReplyAction="http://tempuri.org/ICallback/StartGameResponse")]
+        System.Threading.Tasks.Task StartGameAsync(UI_Checkers_.ServiceReference1.PlayerDTO player);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICallbackCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICallback/GetInfo")]
+        void GetInfo(bool b);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICallbackChannel : UI_Checkers_.ServiceReference1.ICallback, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CallbackClient : System.ServiceModel.DuplexClientBase<UI_Checkers_.ServiceReference1.ICallback>, UI_Checkers_.ServiceReference1.ICallback {
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CallbackClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void StartGame(UI_Checkers_.ServiceReference1.PlayerDTO player) {
+            base.Channel.StartGame(player);
+        }
+        
+        public System.Threading.Tasks.Task StartGameAsync(UI_Checkers_.ServiceReference1.PlayerDTO player) {
+            return base.Channel.StartGameAsync(player);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IMove")]
+    public interface IMove {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/MakeMove", ReplyAction="http://tempuri.org/IMove/MakeMoveResponse")]
+        UI_Checkers_.ServiceReference1.Move[] MakeMove(UI_Checkers_.ServiceReference1.Move[] moves);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/MakeMove", ReplyAction="http://tempuri.org/IMove/MakeMoveResponse")]
+        System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> MakeMoveAsync(UI_Checkers_.ServiceReference1.Move[] moves);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/ChekMove", ReplyAction="http://tempuri.org/IMove/ChekMoveResponse")]
+        UI_Checkers_.ServiceReference1.Move[] ChekMove(UI_Checkers_.ServiceReference1.Move move);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/ChekMove", ReplyAction="http://tempuri.org/IMove/ChekMoveResponse")]
+        System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMoveChannel : UI_Checkers_.ServiceReference1.IMove, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MoveClient : System.ServiceModel.ClientBase<UI_Checkers_.ServiceReference1.IMove>, UI_Checkers_.ServiceReference1.IMove {
+        
+        public MoveClient() {
+        }
+        
+        public MoveClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public MoveClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MoveClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MoveClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public UI_Checkers_.ServiceReference1.Move[] MakeMove(UI_Checkers_.ServiceReference1.Move[] moves) {
+            return base.Channel.MakeMove(moves);
+        }
+        
+        public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> MakeMoveAsync(UI_Checkers_.ServiceReference1.Move[] moves) {
+            return base.Channel.MakeMoveAsync(moves);
+        }
+        
+        public UI_Checkers_.ServiceReference1.Move[] ChekMove(UI_Checkers_.ServiceReference1.Move move) {
+            return base.Channel.ChekMove(move);
+        }
+        
+        public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move) {
+            return base.Channel.ChekMoveAsync(move);
         }
     }
 }

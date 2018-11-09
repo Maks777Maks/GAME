@@ -6,12 +6,30 @@
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
         Title="Autorization" Height="500" Width="500">
-    <Grid>
-        <StackPanel>
-            <TextBox Name="Nickname" Height="100"/>
-            <PasswordBox Name="Password" Height="100"/>
-            <Button Click="Button_Click" Content="OK"/>
-        </StackPanel>
-        
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="http://www.ventes.com.tr/hafun/resim/DAMA_TAHTASI_1435649481.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CHECKERS" FontWeight="Bold" FontSize="50" FontStyle="Italic" FontFamily="Viner Hand ITC" Background="#00000000" Foreground="#FF12320A"/>
+        <Border Padding="5" Grid.Column="1" Grid.Row="2" CornerRadius="25" Background="White" BorderBrush="#FF120BB2" Height="50">
+            <TextBox BorderThickness="0" Name="Nickname" Background="Transparent" BorderBrush="Transparent" />
+        </Border>
+        <Border Padding="5" Grid.Column="1" Grid.Row="3" CornerRadius="20" Background="Black" >
+            <PasswordBox  Name="Password" />
+        </Border>
+        <Button Grid.Column="1" Grid.Row="4" Click="Button_Click" Content="OK" Height="60"/>
     </Grid>
 </Window>
