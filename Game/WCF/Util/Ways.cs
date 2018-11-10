@@ -9,7 +9,11 @@ namespace WCF.Util
     public  class Ways
     {
 
+       
 
 
     }
-}
+
+
+ }
+
