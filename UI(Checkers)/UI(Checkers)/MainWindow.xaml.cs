@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -26,12 +27,16 @@ namespace UI_Checkers_
     {
         public CallBackUI callbackhandler = new CallBackUI();
         PlayerUI player = new PlayerUI();
+        ObservableCollection<PlayerUI> players = new ObservableCollection<PlayerUI>();
 
         public MainWindow()
         {
             InitializeComponent();
-              //Autorization autorization = new Autorization();
-              //autorization.ShowDialog();
+            datagrid.ItemsSource = players;
+            Autorization autorization = new Autorization();
+            autorization.ShowDialog();
+
+
             //player.ID = autorization.player.ID;
             //player.NickName = autorization.player.NickName;
             //player.Password = autorization.player.Password;

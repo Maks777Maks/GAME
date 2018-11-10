@@ -9,6 +9,204 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
+
+        <!--<RadialGradientBrush x:Key="ControlBackgroundNormal" GradientOrigin="0.5,0">
+            <GradientStop Color="#FF585555" Offset="1"/>
+            <GradientStop Color="#FE8F8D8D" Offset="0.082"/>
+        </RadialGradientBrush>
+        <LinearGradientBrush x:Key="BrushTrackProgressBar" EndPoint="0,0.5" StartPoint="1,0.5">
+            <GradientStop Color="#FFEFCF38" Offset="0"/>
+            <GradientStop Color="#FFFD9804" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="DisabledBrush" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#f4f4f4" Offset="0"/>
+            <GradientStop Color="#d7d7d7" Offset="0.7"/>
+            <GradientStop Color="#c2c2c2" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ControlActiveBorderBrush" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Color="#FFBE841D" Offset="0.204" />
+            <GradientStop Color="#FFCD9E1E" Offset="0.864" />
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ControlForegroundWhite" Color="#FFEEEFFF" />
+        <SolidColorBrush x:Key="SliderSelectRange" Color="#FFE4960A"/>
+        <SolidColorBrush x:Key="DisabledForeground2" Color="#FFAAAAAA"/>
+        <SolidColorBrush x:Key="ControlForeground" Color="#FFFD9804" />
+        <Style x:Key="FocusLine2">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle SnapsToDevicePixels="True" Stroke="#ddd" StrokeDashArray="1 2" StrokeThickness="1" Margin="-6"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HorizontalSliderThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <ControlTemplate.Resources>
+                            --><!--<Storyboard x:Key="HoverOn">
+                                <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="center" Storyboard.TargetProperty="(Ellipse.Height)">
+                                    <DoubleAnimation.To>
+                                        <system:Double>10</system:Double>
+                                    </DoubleAnimation.To>
+                                </DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="center" Storyboard.TargetProperty="(Ellipse.Width)">
+                                    <DoubleAnimation.To>
+                                        <system:Double>10</system:Double>
+                                    </DoubleAnimation.To>
+                                </DoubleAnimation>
+                            </Storyboard>-->
+                            <!--<Storyboard x:Key="HoverOff">
+                                <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="center" Storyboard.TargetProperty="(Ellipse.Height)">
+                                    <DoubleAnimation.To>
+                                        <system:Double>14</system:Double>
+                                    </DoubleAnimation.To>
+                                </DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="center" Storyboard.TargetProperty="(Ellipse.Width)">
+                                    <DoubleAnimation.To>
+                                        <system:Double>14</system:Double>
+                                    </DoubleAnimation.To>
+                                </DoubleAnimation>
+                            </Storyboard>--><!--
+                        </ControlTemplate.Resources>
+                        <Grid Background="Transparent">
+                            <Ellipse Stretch="Fill" Fill="{StaticResource ControlForegroundWhite}"/>
+                            <Ellipse x:Name="center" Width="14" Height="14" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="{StaticResource ControlActiveBorderBrush}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource HoverOn}"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource HoverOff}"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Fill" TargetName="center" Value="{StaticResource DisabledBrush}"/>
+                                <Setter Property="Opacity" Value=".8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RepeatButtonLeft" TargetType="{x:Type RepeatButton}" BasedOn="{x:Null}">
+            <Setter Property="Height" Value="6"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Grid>
+                            <Border x:Name="bg" Background="{StaticResource BrushTrackProgressBar}" CornerRadius="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="bg" Value="{StaticResource DisabledBrush}"/>
+                                <Setter Property="Opacity" Value=".8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RepeatButtonRight" TargetType="{x:Type RepeatButton}" BasedOn="{x:Null}">
+            <Setter Property="Height" Value="6"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Grid>
+                            <Border x:Name="bg" Background="{StaticResource ControlBackgroundNormal}" CornerRadius="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="bg" Value="{StaticResource DisabledBrush}"/>
+                                <Setter Property="Opacity" Value=".8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource ControlForeground}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusLine2}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Grid x:Name="GridRoot">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TickBar Visibility="Collapsed" x:Name="TopTick" Height="5" SnapsToDevicePixels="True" Placement="Top" Fill="{TemplateBinding Foreground}"/>
+                            <Border Grid.Row="1" Margin="0" x:Name="Border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                            <Canvas Grid.Row="1" VerticalAlignment="Center" Margin="0,-2,0,4">
+                                <Rectangle Fill="{StaticResource SliderSelectRange}" x:Name="PART_SelectionRange" Height="6" Visibility="Hidden" />
+                            </Canvas>
+                            <Track Grid.Row="1" x:Name="PART_Track">
+                                <Track.Thumb>
+                                    <Thumb x:Name="thumb" Style="{StaticResource HorizontalSliderThumb}"/>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="LeftRB" Style="{DynamicResource RepeatButtonRight}" Command="Slider.IncreaseLarge"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="RightRB" Style="{DynamicResource RepeatButtonLeft}" Command="Slider.DecreaseLarge"/>
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                            <TickBar Visibility="Collapsed" Grid.Row="2" x:Name="BottomTick" Height="5" SnapsToDevicePixels="True" Placement="Bottom" Fill="{TemplateBinding Foreground}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TickPlacement" Value="TopLeft">
+                                <Setter Property="Visibility" Value="Visible" TargetName="TopTick"/>
+                            </Trigger>
+                            <Trigger Property="TickPlacement" Value="BottomRight">
+                                <Setter Property="Visibility" Value="Visible" TargetName="BottomTick"/>
+                            </Trigger>
+                            <Trigger Property="TickPlacement" Value="Both">
+                                <Setter Property="Visibility" Value="Visible" TargetName="TopTick"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="BottomTick"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForeground2}"/>
+                                <Setter Property="Opacity" Value="0.62"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="GridRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="Orientation" Value="Horizontal"/>
+                            </Trigger>
+                            <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                                <Setter Property="Opacity" TargetName="LeftRB" Value="0.8"/>
+                                <Setter Property="Opacity" TargetName="RightRB" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="1,1,1,1"/>
+        </Style>
+
+
+
         <LinearGradientBrush x:Key="FillPath" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#FFEFCF38" Offset="0"/>
             <GradientStop Color="#FFFD9804" Offset="1"/>
@@ -24,7 +222,7 @@
         <Canvas x:Key="sound_3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Path Width="25.0035" Height="17.0299" Canvas.Left="6" Canvas.Top="10" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource sound_3Style0}" />
             <Border />
-        </Canvas>
+        </Canvas>-->
     </Window.Resources>
     <Grid Background="#FF2C662C">
         <Grid.ColumnDefinitions>

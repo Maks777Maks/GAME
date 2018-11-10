@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Background="#333"
+        Title="Checkers" Height="550" Width="625">
     <Grid>
-        <Button Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Calendar x:Name="calendar"/>
+        <DataGrid Name="datagrid" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" Margin="12" AutoGenerateColumns="False" Width="1000"
+                      RowDetailsVisibilityMode="VisibleWhenSelected" >
+            <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border Margin="8" Padding="8" BorderThickness="2" BorderBrush="#FFFFFFFF" CornerRadius="5" MaxWidth="600">
+                            <TextBlock TextWrapping="Wrap" Foreground="#444" Text="{Binding XPath=Description}"/>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding XPath=@ID}" Header="Place"/>
+                <DataGridTextColumn Binding="{Binding XPath=@ID}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding XPath=Title}" Header="NickName" MinWidth="150"/>
+                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Victories"/>
+                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Draws"/>
+                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Defeats">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Binding="{Binding XPath=@Public}" Header="Online">
+                    <DataGridCheckBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridCheckBoxColumn.ElementStyle>
+                </DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<Button Click="Button_Click"/>-->
     </Grid>
 </Window>

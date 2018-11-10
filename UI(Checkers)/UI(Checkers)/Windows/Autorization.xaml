@@ -6,7 +6,34 @@
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
         Title="Autorization" Height="500" Width="500">
-    <Grid >
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0"/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="OrangeRed" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+            <Grid >
         <Grid.Background>
             <ImageBrush ImageSource="http://www.ventes.com.tr/hafun/resim/DAMA_TAHTASI_1435649481.jpg"/>
         </Grid.Background>
@@ -23,13 +50,44 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CHECKERS" FontWeight="Bold" FontSize="50" FontStyle="Italic" FontFamily="Viner Hand ITC" Background="#00000000" Foreground="#FF12320A"/>
-        <Border Padding="5" Grid.Column="1" Grid.Row="2" CornerRadius="25" Background="White" BorderBrush="#FF120BB2" Height="50">
+        <Label Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CHECKERS" FontWeight="Bold" FontSize="50" FontStyle="Italic" FontFamily="Viner Hand ITC" Background="#00000000">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFFDE707"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <Label Content="Login" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Viner Hand ITC" FontWeight="Bold" FontStyle="Italic" FontSize="24" Background="Transparent">
+            <Label.Foreground>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFFDE707"/>
+                </RadialGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <Label Content="Password" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Viner Hand ITC" FontWeight="Bold" FontStyle="Italic" FontSize="24" Background="#00000000">
+            <Label.Foreground>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFFDE707"/>
+                </RadialGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <Border Padding="5" Grid.Column="1" Grid.Row="2" CornerRadius="25" Background="White" BorderBrush="#FF120BB2" Height="35">
             <TextBox BorderThickness="0" Name="Nickname" Background="Transparent" BorderBrush="Transparent" />
         </Border>
-        <Border Padding="5" Grid.Column="1" Grid.Row="3" CornerRadius="20" Background="Black" >
-            <PasswordBox  Name="Password" />
+        <Border Padding="5" Grid.Column="1" Grid.Row="3" CornerRadius="25" Background="White" BorderBrush="#FF120BB2" Height="35">
+            <PasswordBox  Name="Password" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" />
         </Border>
-        <Button Grid.Column="1" Grid.Row="4" Click="Button_Click" Content="OK" Height="60"/>
+        <Border Padding="5" Grid.Column="1" Grid.Row="4" CornerRadius="20" BorderBrush="#FF120BB2" Height="50">
+            <Border.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFDC5353"/>
+                </RadialGradientBrush>
+            </Border.Background>
+            <Button Click="Button_Click" Content="OK" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
+        </Border>
     </Grid>
 </Window>

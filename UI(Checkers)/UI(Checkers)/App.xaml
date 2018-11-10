@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:UI_Checkers_"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/Core.xaml"/>
+                <ResourceDictionary Source="Style/Icons.xaml"/>
+                <ResourceDictionary Source="Style/Brushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

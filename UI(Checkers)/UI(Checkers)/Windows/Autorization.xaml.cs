@@ -31,11 +31,12 @@ namespace UI_Checkers_.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ServiceReference1.ContractClient client = new ContractClient();
-            player=MapperUI.PlayerFromDTO(client.AddPlayer(Nickname.Text, Password.Password));
-            MessageBox.Show(player.ID.ToString());
-            MessageBox.Show(player.NickName);
-            //client.
+            MessageBox.Show("!!!!!!!!!!!!!");
+            //ServiceReference1.ContractClient client = new ContractClient();
+            //player=MapperUI.PlayerFromDTO(client.AddPlayer(Nickname.Text, Password.Password));
+            //MessageBox.Show(player.ID.ToString());
+            //MessageBox.Show(player.NickName);
+            
         }
     }
 }
