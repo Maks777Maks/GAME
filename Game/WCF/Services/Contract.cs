@@ -18,8 +18,8 @@ namespace WCF.Services
         private readonly Context context;
         private Player Player;
         private static List<ICallbackDuplex> contracts = new List<ICallbackDuplex>();
+        Ways ways = new Ways();
 
-       
 
         public void StartGame(PlayerDTO player)
         {
@@ -99,10 +99,76 @@ namespace WCF.Services
         
         }
 
-        public List<Move> MakeMove(List<Move> moves)
+        public List<Move> MakeMove(Move move1,Move move2)
         {
-            throw new NotImplementedException();
+            int tmp1 = 0;
+            int tmp2 = 0;
+
+            List<Move> _moves = new List<Move>();
+            List<Move> moves_ = new List<Move>();
+            List<List<Move>> _ways = ways.GetWays();
+            foreach (var w in _ways)
+            {
+                for (int i = 0; i < w.Count; i++)
+                {
+                    if (w[i].Name == move1.Name)
+                    {
+                        w[i] = move1;
+
+
+                        if (w[i].Name == move2.Name)
+                        {
+                            w[i] = move2;
+                        }
+                    }
+                }
+            }
+
+            foreach (var way in _ways)
+            {
+                if (way.Contains(move1) && way.Contains(move2))
+                {
+                    _moves = way;
+
+
+                }
+            }
+
+            for (int i = 0; i < _moves.Count; i++)
+            {
+                if (_moves[i].Name == move1.Name)
+                    tmp1 = i;
+                if (_moves[i].Name == move2.Name)
+                    tmp2 = i;
+            }
+
+            if (tmp1 > tmp2)
+                for (int i = tmp1; i < tmp2; i++)
+                {
+                    moves_.Add(_moves[i]);
+                }
+            else
+            {
+                for (int i = tmp2; i < tmp1; i++)
+                {
+                    moves_.Add(_moves[i]);
+                }
+            }
+
+
+
+
+
+            return moves_;
+
+
         }
+
+
+
+
+
+        
 
         public List<Move> ChekMove(Move moves)
         {
@@ -114,7 +180,7 @@ namespace WCF.Services
             int tmp1;
             Move thismove=new Move();
 
-            Ways ways = new Ways();
+           
             Logger.Log($"Count ways :  {ways.GetWays().Count().ToString()}");
             foreach (var way in ways.GetWays())
             {
@@ -141,7 +207,7 @@ namespace WCF.Services
                 foreach (var way in wayslist)
                 {
                     Logger.Log($"numbermove: {numbermove[j]}");
-                    if (numbermove[j] < way.Count&&numbermove[j]!=0)
+                    if (numbermove[j] < way.Count&&numbermove[j]>0)
                     {
                        
                            tmp1 = numbermove[j];
@@ -163,10 +229,11 @@ namespace WCF.Services
 
 
 
-                        //if (way[tmp1 + 2].Color != moves.Color && way[tmp1 + 2].Name != "Empty" && way[tmp1 + 2] != null)
-                        //{
-                        //    list.Add(way[tmp1 + 2]);
-                        //}
+                        
+                            if (numbermove[j] + 2 < way.Count&&way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+                            {
+                                list.Add(way[tmp1 + 2]);
+                            }
 
                     }
                 }

@@ -13,7 +13,7 @@ namespace WCF.Contracts
     public interface IMove
     {
         [OperationContract]
-        List<Move> MakeMove(List<Move> moves);
+        List<Move> MakeMove(Move move1,Move move2);
 
 
         [OperationContract]
