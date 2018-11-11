@@ -106,10 +106,74 @@ namespace WCF.Services
 
         public List<Move> ChekMove(Move moves)
         {
-            Move move = new Move();
+            // Move move = new Move();
+            Logger.Log(moves.Name);
+            List<int> numbermove=new List<int>();
             List<Move> list = new List<Move>();
-            move.Name = "_g5";
-            list.Add(move);
+            List<List<Move>> wayslist = new List<List<Move>>();
+            int tmp1;
+            Move thismove=new Move();
+
+            Ways ways = new Ways();
+            Logger.Log($"Count ways :  {ways.GetWays().Count().ToString()}");
+            foreach (var way in ways.GetWays())
+            {
+                for (int  _move=0;_move<way.Count;_move++)
+                {
+                    if (way[_move].Name == moves.Name)
+                    {
+                        wayslist.Add(way);
+                        if (thismove.Name == "")
+                            thismove = way[_move];
+
+                        numbermove.Add(_move);
+
+                    }
+                }
+            }
+
+            Logger.Log($"Count numbermove  {numbermove.Count}");
+
+
+           
+                for (int j = 0; j < numbermove.Count; j++)
+                {
+                foreach (var way in wayslist)
+                {
+                    Logger.Log($"numbermove: {numbermove[j]}");
+                    if (numbermove[j] < way.Count&&numbermove[j]!=0)
+                    {
+                       
+                           tmp1 = numbermove[j];
+                        
+                            Logger.Log($"Way[tmp1-1]:{way[tmp1 - 1].Name}");
+                            if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != ""&&way[tmp1 - 1]!=null)
+                            {
+                                Logger.Log($"way[tmp1-1] Name:  {way[tmp1 - 1].Name}");
+                                list.Add(way[tmp1 - 1]);
+                            }
+
+
+
+                            if (way[tmp1 - 1].Color !=thismove.Color&&way[tmp1-1].Color!="Empty"&&way[tmp1 - 2] != null&&way[tmp1-2].Color=="Empty" &&way[tmp1-2].Name!="")
+
+                            {
+                                list.Add(way[tmp1 - 2]);
+                            }
+
+
+
+                        //if (way[tmp1 + 2].Color != moves.Color && way[tmp1 + 2].Name != "Empty" && way[tmp1 + 2] != null)
+                        //{
+                        //    list.Add(way[tmp1 + 2]);
+                        //}
+
+                    }
+                }
+             }
+            
+            Logger.Log($"Count list moves:  {list.Count().ToString()}");
+
             return list;
             
         }
