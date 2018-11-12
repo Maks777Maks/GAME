@@ -51,9 +51,9 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Interfaces\IRepos.cs" />
-    <Compile Include="Migrations\201811072135239_migration1.cs" />
-    <Compile Include="Migrations\201811072135239_migration1.Designer.cs">
-      <DependentUpon>201811072135239_migration1.cs</DependentUpon>
+    <Compile Include="Migrations\201811121333385_migration1.cs" />
+    <Compile Include="Migrations\201811121333385_migration1.Designer.cs">
+      <DependentUpon>201811121333385_migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Player.cs" />
@@ -67,8 +67,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811072135239_migration1.resx">
-      <DependentUpon>201811072135239_migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811121333385_migration1.resx">
+      <DependentUpon>201811121333385_migration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
