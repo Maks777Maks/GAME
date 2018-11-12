@@ -103,44 +103,13 @@ namespace WCF.Services
         {
             int tmp1 = 0;
             int tmp2 = 0;
-
+            bool tmp = true;
             List<Move> _moves = new List<Move>();
             List<Move> moves_ = new List<Move>();
             List<List<Move>> _ways = ways.GetWays();
-            foreach (var w in _ways)
-            {
-                for (int i = 0; i < w.Count; i++)
-                {
-                    if (w[i].Name == move1.Name)
-                    {
-                        w[i] = move1;
+           
 
-
-                        if (w[i].Name == move2.Name)
-                        {
-                            w[i] = move2;
-                        }
-                    }
-                }
-            }
-
-            foreach (var way in _ways)
-            {
-                if (way.Contains(move1) && way.Contains(move2))
-                {
-                    _moves = way;
-
-
-                }
-            }
-
-            for (int i = 0; i < _moves.Count; i++)
-            {
-                if (_moves[i].Name == move1.Name)
-                    tmp1 = i;
-                if (_moves[i].Name == move2.Name)
-                    tmp2 = i;
-            }
+          
 
             if (tmp1 > tmp2)
                 for (int i = tmp1; i < tmp2; i++)
