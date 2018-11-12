@@ -99,40 +99,150 @@ namespace WCF.Services
         
         }
 
-        public List<Move> MakeMove(Move move1,Move move2)
+        public List<Move> MakeMove(Move move1, Move move2)
+
         {
-            int tmp1 = 0;
-            int tmp2 = 0;
-            bool tmp = true;
+            
+
+            int tmp1 = 1000;
+
+            int tmp2 = 1000;
+
+
+
             List<Move> _moves = new List<Move>();
+
             List<Move> moves_ = new List<Move>();
+
             List<List<Move>> _ways = ways.GetWays();
-           
 
-          
 
-            if (tmp1 > tmp2)
-                for (int i = tmp1; i < tmp2; i++)
-                {
-                    moves_.Add(_moves[i]);
-                }
-            else
+            foreach (var w in _ways)
             {
-                for (int i = tmp2; i < tmp1; i++)
+                for (int i = 0; i < w.Count; i++)
                 {
-                    moves_.Add(_moves[i]);
+                    if (w[i].Name == move1.Name)
+                    {
+                        move1.Color = w[i].Color;
+
+                    }
+
+
+                    if (w[i].Name == move2.Name)
+                    {
+                        move2.Color = w[i].Color;
+
+                    }
+
                 }
             }
 
+           
+                foreach (var w in _ways)
+
+                {
+
+                    Logger.Log($"tmp1:  {tmp1}    tmp2:  {tmp2}");
+                    if (tmp1 == 1000 || tmp2 == 1000)
+
+                    {
+                        for (int i = 0; i < w.Count; i++)
+
+                        {
+
+
+                            if (w[i].Name == move1.Name)
+                            {
+
+                                w[i].Color = move2.Color;
+
+                                tmp1 = i;
+
+
+
+                            }
+
+
+                            if (w[i].Name == move2.Name)
+                            {
+
+                                w[i].Color = move1.Color;
+
+                                tmp2 = i;
+
+
+                            }
+
+
+                            _moves = w;
+                        }
+                    }
+                    else
+                        break;
+
+                   
+
+                    if (tmp1 == 1000 || tmp2 == 1000)
+                    {
+                        tmp1 = 1000;
+                        tmp2 = 1000;
+                    }
+
+                }
+            
+            
+
+
+
+            if (tmp1 > tmp2)
+                {
+
+                    if (tmp1 - tmp2 > 2)
+                    {
+                        for (int i = tmp1; i < tmp2; i++)
+                        {
+                            moves_.Add(_moves[i]);
+
+                        }
+                    }
+                    else
+                    {
+                        moves_.Add(_moves[tmp1]);
+
+                        moves_.Add(_moves[tmp2]);
+
+                    }
+                }
 
 
 
 
-            return moves_;
+                if (tmp1 < tmp2)
+                {
+
+                    if (tmp2 - tmp1 > 2)
+                    {
+                        for (int i = tmp2; i < tmp1; i++)
+                        {
+                            moves_.Add(_moves[i]);
+                         
+                        }
+                    }
+                    else
+                    {
+                        moves_.Add(_moves[tmp1]);
+
+                        moves_.Add(_moves[tmp2]);
+                       
+                    }
+
+                }
 
 
+                return moves_;
+
+            
         }
-
 
 
 
@@ -141,16 +251,22 @@ namespace WCF.Services
 
         public List<Move> ChekMove(Move moves)
         {
-            // Move move = new Move();
+           
             Logger.Log(moves.Name);
+
             List<int> numbermove=new List<int>();
+
             List<Move> list = new List<Move>();
+
             List<List<Move>> wayslist = new List<List<Move>>();
+
             int tmp1;
+
             Move thismove=new Move();
 
            
-            Logger.Log($"Count ways :  {ways.GetWays().Count().ToString()}");
+            
+
             foreach (var way in ways.GetWays())
             {
                 for (int  _move=0;_move<way.Count;_move++)
@@ -158,6 +274,7 @@ namespace WCF.Services
                     if (way[_move].Name == moves.Name)
                     {
                         wayslist.Add(way);
+
                         if (thismove.Name == "")
                             thismove = way[_move];
 
@@ -167,7 +284,7 @@ namespace WCF.Services
                 }
             }
 
-            Logger.Log($"Count numbermove  {numbermove.Count}");
+            
 
 
            
@@ -175,23 +292,21 @@ namespace WCF.Services
                 {
                 foreach (var way in wayslist)
                 {
-                    Logger.Log($"numbermove: {numbermove[j]}");
+                    
                     if (numbermove[j] < way.Count&&numbermove[j]>0)
                     {
                        
                            tmp1 = numbermove[j];
                         
-                            Logger.Log($"Way[tmp1-1]:{way[tmp1 - 1].Name}");
+                          
                             if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != ""&&way[tmp1 - 1]!=null)
-                            {
-                                Logger.Log($"way[tmp1-1] Name:  {way[tmp1 - 1].Name}");
+                            {                               
                                 list.Add(way[tmp1 - 1]);
                             }
 
 
 
                             if (way[tmp1 - 1].Color !=thismove.Color&&way[tmp1-1].Color!="Empty"&&way[tmp1 - 2] != null&&way[tmp1-2].Color=="Empty" &&way[tmp1-2].Name!="")
-
                             {
                                 list.Add(way[tmp1 - 2]);
                             }
@@ -208,7 +323,7 @@ namespace WCF.Services
                 }
              }
             
-            Logger.Log($"Count list moves:  {list.Count().ToString()}");
+            
 
             return list;
             
