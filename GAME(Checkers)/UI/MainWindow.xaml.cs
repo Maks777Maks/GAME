@@ -37,6 +37,10 @@ namespace UI
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             White_Game game = new White_Game();
+            
         }
+
+
+
     }
 }

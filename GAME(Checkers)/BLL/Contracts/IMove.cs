@@ -18,6 +18,6 @@ namespace BLL.Contracts
         [OperationContract]
         List<Move> ChekMove(Move move);
 
-
+        
     }
 }
