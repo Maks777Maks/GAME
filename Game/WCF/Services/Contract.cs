@@ -99,34 +99,15 @@ namespace WCF.Services
         
         }
 
-        public List<Move> MakeMove(Move move1, Move move2)
-
+        public List<Move> MakeMove(Move move1,Move move2)
         {
-            
-
-            int tmp1 = 1000;
-
-            int tmp2 = 1000;
-
-
-
+            int tmp1 = 0;
+            int tmp2 = 0;
+            bool tmp = true;
             List<Move> _moves = new List<Move>();
-
             List<Move> moves_ = new List<Move>();
-
             List<List<Move>> _ways = ways.GetWays();
-
-
-            foreach (var w in _ways)
-            {
-                for (int i = 0; i < w.Count; i++)
-                {
-                    if (w[i].Name == move1.Name)
-                    {
-                        move1.Color = w[i].Color;
-
-                    }
-
+           
 
                     if (w[i].Name == move2.Name)
                     {
@@ -269,7 +250,7 @@ namespace WCF.Services
 
             foreach (var way in ways.GetWays())
             {
-                for (int  _move=0;_move<way.Count;_move++)
+                for (int _move = 0; _move < way.Count; _move++)
                 {
                     if (way[_move].Name == moves.Name)
                     {
@@ -287,9 +268,9 @@ namespace WCF.Services
             
 
 
-           
-                for (int j = 0; j < numbermove.Count; j++)
-                {
+
+            for (int j = 0; j < numbermove.Count; j++)
+            {
                 foreach (var way in wayslist)
                 {
                     
@@ -313,11 +294,11 @@ namespace WCF.Services
 
 
 
-                        
-                            if (numbermove[j] + 2 < way.Count&&way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
-                            {
-                                list.Add(way[tmp1 + 2]);
-                            }
+
+                        if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+                        {
+                            list.Add(way[tmp1 + 2]);
+                        }
 
                     }
                 }
@@ -326,7 +307,132 @@ namespace WCF.Services
             
 
             return list;
-            
+
         }
+
+
+
+
+        public List<Move> MakeMove(Move move1,Move move2)
+        {
+            int tmp1 = 1000;
+            int tmp2 = 1000;
+            bool tmp = true;
+            bool t=false;
+            List<Move> _moves = new List<Move>();
+            List<Move> moves_ = new List<Move>();
+            List<List<Move>> _ways = ways.GetWays();
+
+
+
+            foreach (var w in _ways)
+            {
+                for (int i = 0; i < w.Count; i++)
+                {
+                    if (w[i].Name == move1.Name)
+                    {
+                        
+                        Logger.Log($"w[i].Name:  {w[i].Name}");
+                        Logger.Log($" w[i].Color:  {w[i].Color}");
+
+                        w[i].Color = move2.Color;
+                       
+                        Logger.Log($" Set w[i].Color:  {w[i].Color}");
+                        tmp1 = i;
+                        tmp = false;
+                    }
+
+                    if (w[i].Name == move2.Name)
+                    {
+                        //Logger.Log($"w[i].Name:  {w[i].Name}");
+                        //Logger.Log($" w[i].Color:  {w[i].Color}");
+
+                        w[i].Color = move1.Color;
+                        //Logger.Log($"w[i].Name:  {w[i].Name}");
+                        //Logger.Log($" Set w[i].Color:  {w[i].Color}");
+                        tmp2 = i;
+                        tmp = true;
+                    }
+
+                    if (tmp1!=1000&&tmp2!=1000)
+                    {
+                        Logger.Log($"tmp1: {tmp1}   tmp2: {tmp2}");
+                        _moves = w;
+                        //tmp = false;
+                        tmp = false;
+                        t = true;
+                        break;
+                    }
+
+
+                }
+
+                if (t == true)
+                    break;
+
+               
+            }
+
+            //Logger.Log($"tmp1: {tmp1}  tmp2: {tmp2}  movescount: {_moves.Count}");
+            //Logger.Log($"!!!  moves[tmp1]: {_moves[tmp1].Name}   moves[tmp2]: {_moves[tmp2].Name}");
+
+
+            if (tmp1 > tmp2)
+            {
+                Logger.Log("tmp1>tmp2");
+                if (tmp1 - tmp2 > 2)
+                {
+                    for (int i = tmp1; i < tmp2; i++)
+                    {
+                        moves_.Add(_moves[i]);
+
+                        Logger.Log(_moves[i].Name);
+                    }
+                }
+                else
+                {
+                    moves_.Add(_moves[tmp1]);
+                    moves_.Add(_moves[tmp2]);
+                    Logger.Log($"!!!  moves[tmp1]: {_moves[tmp1].Name}   moves[tmp2]: {_moves[tmp2].Name}");
+                }
+            }
+             if(tmp1<tmp2)
+            {
+
+                
+                Logger.Log("tmp1<tmp2");
+
+                if (tmp2 - tmp1 > 2)
+                {
+                    for (int i = tmp2; i < tmp1; i++)
+                    {
+                        moves_.Add(_moves[i]);
+
+                        Logger.Log(_moves[i].Name);
+                    }
+                }
+                else
+                {
+                    moves_.Add(_moves[tmp1]);
+                    moves_.Add(_moves[tmp2]);
+                    Logger.Log($"!!!  moves[tmp1]: {_moves[tmp1].Name}   moves[tmp2]: {_moves[tmp2].Name}");
+                }
+
+            }
+
+
+
+            return moves_;
+
+
+        }
+
+
+
+
+
+        
+
+
     }
 }

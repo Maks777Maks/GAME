@@ -7,7 +7,6 @@ namespace DAL
 
     public class Context : DbContext
     {
-
         public Context()
             : base("name=Context")
         {
@@ -16,8 +15,7 @@ namespace DAL
         public DbSet<Player> Users { get; set; }
 
 
-
     }
 
-
+    
 }
