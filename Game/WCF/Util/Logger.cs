@@ -9,7 +9,7 @@ namespace WCF.Util
 {
     public static class Logger
     {
-        private static string Path = @"C:\Log\Logger.txt";
+        private static string Path = @"C:\Users\Льоша\Desktop\Logger.txt";
         public static void Log(string msg)
         {
             using (StreamWriter fs = new StreamWriter(Path, true))

@@ -255,119 +255,389 @@ namespace WCF.Services
         {
 
             Logger.Log(moves.Name);
-
-            List<int> numbermove = new List<int>();
+           
 
             List<Move> list = new List<Move>();
 
             List<List<Move>> wayslist = new List<List<Move>>();
 
-            int tmp1;
+           
 
             Move thismove = new Move();
 
-
+            string thismovecolor="";
 
 
             foreach (var way in ways.GetWays())
             {
-                for (int _move = 0; _move < way.Count; _move++)
+                if (thismovecolor == "")
                 {
-                    if (way[_move].Name == moves.Name)
+                    for (int _move = 0; _move < way.Count; _move++)
                     {
-                        wayslist.Add(way);
+                        if (way[_move].Name == moves.Name)
+                        {                           
+                            thismovecolor = way[_move].Color;
 
-                        
-                            thismove = way[_move];
+                            break;
 
-                        numbermove.Add(_move);
-
+                        }
                     }
                 }
+                else
+                    break;
+                
             }
-
 
 
             
-            Logger.Log($"thismove color: {thismove.Color}");
-            Logger.Log($"thismove name: {thismove.Name}");
 
 
-            if (thismove.Color == "Black")
+            if (thismovecolor == "Black")
             {
-                for (int j = 0; j < numbermove.Count; j++)
-                {
-                    foreach (var way in wayslist)
+
+                
+
+                    foreach (var way in ways.GetWays())
                     {
-
-                        if (numbermove[j] < way.Count && numbermove[j] > 0)
+                    
+                        for (int _move = 0; _move < way.Count; _move++)
                         {
-
-                            tmp1 = numbermove[j];
-
-
-                            if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+                            if (way[_move].Name == moves.Name)
                             {
-                                list.Add(way[tmp1 - 1]);
+                                
+                                wayslist.Add(way);
+
+ 
+                            }
+                        }
+                    
+
+                    }
+
+
+
+
+                foreach (var v in wayslist)
+                {
+                    for (int i = 0; i < v.Count; i++)
+                    {
+                        if(i>0)
+                        if (v[i].Name == moves.Name)
+                        {
+                           
+                            if (v[i - 1].Color == "Empty" && v[i - 1].Color != "" && v[i - 1] != null)
+                            {
+                               
+                                list.Add(v[i - 1]);
                             }
 
 
 
-                            if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+                            if (v[i - 1].Color != v[i].Color && v[i - 1].Color != "Empty" &&  v[i - 2].Color == "Empty" )
                             {
-                                list.Add(way[tmp1 - 2]);
+                                
+                                list.Add(v[i - 2]);
                             }
 
 
 
 
-                            if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+                            if (i + 2 <v.Count && v[i + 2].Color == "Empty" && v[i + 1].Color != "Empty" && v[i + 1].Color != v[i].Color && v[i + 2] != null)
                             {
-                                list.Add(way[tmp1 + 2]);
+                                list.Add(v[i + 2]);
                             }
-
                         }
                     }
                 }
+
+
+
+                //for (int j = 0; j < numbermove.Count; j++)
+                //{
+                //    foreach (var way in wayslist)
+                //    {
+
+                //        if (numbermove[j] < way.Count && numbermove[j] > 0)
+                //        {
+
+                //            tmp1 = numbermove[j];
+                //            Logger.Log($"tmp1: {tmp1}");
+
+                //            if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+                //            {
+                //                list.Add(way[tmp1 - 1]);
+                //            }
+
+
+
+                //            if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+                //            {
+                //                list.Add(way[tmp1 - 2]);
+                //            }
+
+
+
+
+                //            if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+                //            {
+                //                list.Add(way[tmp1 + 2]);
+                //            }
+
+                //        }
+                //    }
+                //}
+
+
+
+
+
+
             }
 
-            if(thismove.Color=="White")
+
+
+            if (thismovecolor == "White")
             {
-                for (int j = numbermove.Count-1; j > 0 ; j--)
+
+
+                foreach (var way in ways.GetWays())
                 {
-                    foreach (var way in wayslist)
+
+                    for (int _move = 0; _move < way.Count; _move++)
                     {
-
-                        if (numbermove[j] < way.Count && numbermove[j] > 0)
+                        if (way[_move].Name == moves.Name)
                         {
+                            
 
-                            tmp1 = numbermove[j];
-
-
-                            if (way[tmp1 + 1].Color == "Empty" && way[tmp1 + 1].Color != "" && way[tmp1 + 1] != null)
-                            {
-                                list.Add(way[tmp1 + 1]);
-                            }
+                            wayslist.Add(way);
 
 
-
-                            if (way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 2] != null && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 2].Name != "")
-                            {
-                                list.Add(way[tmp1 + 2]);
-                            }
-
-
-
-
-                            if (numbermove[j] - 2 < way.Count && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 2] != null)
-                            {
-                                list.Add(way[tmp1 - 2]);
-                            }
 
                         }
                     }
+
+
                 }
-            }
+
+               
+
+
+                foreach(var v in wayslist)
+                {
+                    for(int i=0;i<v.Count-1;i++)
+                    {
+                        
+                        if(v[i].Name==moves.Name)
+                        {
+                           
+                            if (v[i+1].Color == "Empty" && v[i + 1].Color != "" && v[i + 1] != null)
+                            {
+                                
+                                list.Add(v[i + 1]);
+                            }
+
+
+
+                            if (v[i + 1].Color != thismove.Color && v[i + 1].Color != "Empty" && v[i + 2] != null && v[i + 2].Color == "Empty" && v[i + 2].Name != "")
+                            {
+                                list.Add(v[i + 2]);
+                            }
+
+
+
+
+                             if (i - 2 > 0 && v[i - 2].Color == "Empty" && v[i - 1].Color != "Empty" && v[i - 1].Color != thismove.Color && v[i - 2] != null)
+                             {
+                                    list.Add(v[i - 2]);
+                             }
+
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+
+               }
+
+
+
+
+
+
+            //if (way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 2] != null && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 2].Name != "")
+            //{
+            //    list.Add(way[tmp1 + 2]);
+            //}
+
+
+
+
+            //if (numbermove[j] - 2 < way.Count && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 2] != null)
+            //{
+            //    list.Add(way[tmp1 - 2]);
+            //}
+
+            //foreach (var way in ways.GetWays())
+            //{
+            //    for (int _move = 0; _move < way.Count; _move++)
+            //    {
+            //        if (way[_move].Name == moves.Name)
+            //        {
+            //            Logger.Log($"way[_move].Name: {way[_move].Name}");
+            //            wayslist.Add(way);
+
+            //            thismove = way[_move];
+
+            //            numbermove.Add(_move);
+
+            //        }
+            //    }
+            //}
+
+
+
+
+
+
+
+            //Logger.Log($"thismove color: {thismove.Color}");
+            //Logger.Log($"thismove name: {thismove.Name}");
+            //Logger.Log($"numbermove[1]: {numbermove[0]}      numbermove[2]: {numbermove[1]}");
+
+
+
+            //if (thismove.Color == "Black")
+            //{
+            //    Logger.Log("thismove.Color==Black");
+            //    for (int j = 0; j < numbermove.Count; j++)
+            //    {
+            //        foreach (var way in wayslist)
+            //        {
+
+            //            if (numbermove[j] < way.Count && numbermove[j] > 0)
+            //            {
+
+            //                tmp1 = numbermove[j];
+            //                Logger.Log($"tmp1: {tmp1}");
+
+            //                if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+            //                {
+            //                    list.Add(way[tmp1 - 1]);
+            //                }
+
+
+
+            //                if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+            //                {
+            //                    list.Add(way[tmp1 - 2]);
+            //                }
+
+
+
+
+            //                if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+            //                {
+            //                    list.Add(way[tmp1 + 2]);
+            //                }
+
+            //            }
+            //        }
+            //    }
+            //}
+
+            //if (thismove.Color == "White")
+            //{
+
+            //    Logger.Log("thismove.Color==White");
+
+
+            //    for (int j = numbermove.Count; j > 0; j--)
+            //    {
+            //        foreach (var way in wayslist)
+            //        {
+
+            //            if (numbermove[j] < way.Count - 1 && numbermove[j] > 0)
+            //            {
+
+            //                tmp1 = numbermove[j];
+
+
+            //                if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+            //                {
+            //                    list.Add(way[tmp1 - 1]);
+            //                }
+
+
+
+            //                if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+            //                {
+            //                    list.Add(way[tmp1 - 2]);
+            //                }
+
+
+
+
+            //                if (numbermove[j] - 2 < way.Count && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 2] != null)
+            //                {
+            //                    list.Add(way[tmp1 - 2]);
+            //                }
+
+            //            }
+            //        }
+            //    }
+            //}
+
+
+
+
+
+
+
+
+
+            //    //for (int j = 0; j < numbermove.Count; j++)
+            //    //{
+            //    //    foreach (var way in wayslist)
+            //    //    {
+
+            //    //        if (numbermove[j] < way.Count && numbermove[j] >= 0)
+            //    //        {
+
+            //    //            tmp1 = numbermove[j];
+            //    //            Logger.Log($"tmp1: {tmp1}");
+
+
+            //    //            if (way[tmp1 + 1].Color == "Empty" && way[tmp1 + 1].Color != "" && way[tmp1 + 1] != null)
+            //    //            {
+            //    //                list.Add(way[tmp1 + 1]);
+            //    //            }
+
+
+
+            //    //            if (way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 2] != null && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 2].Name != "")
+            //    //            {
+            //    //                list.Add(way[tmp1 + 2]);
+            //    //            }
+
+
+
+
+            //    //            if (numbermove[j] - 2 >0 && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 2] != null)
+            //    //            {
+            //    //                list.Add(way[tmp1 - 2]);
+            //    //            }
+
+            //    //        }
+            //    //    }
+            //    //}
+
+            //}
 
 
 
