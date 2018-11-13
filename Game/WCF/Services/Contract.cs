@@ -238,7 +238,7 @@ namespace WCF.Services
 
             }
 
-            contracts[1].MakeMoveDuplex(moves_);
+           
             return moves_;
             
 
@@ -276,7 +276,7 @@ namespace WCF.Services
                     {
                         wayslist.Add(way);
 
-                        if (thismove.Name == "")
+                        
                             thismove = way[_move];
 
                         numbermove.Add(_move);
@@ -287,39 +287,83 @@ namespace WCF.Services
 
 
 
+            
+            Logger.Log($"thismove color: {thismove.Color}");
+            Logger.Log($"thismove name: {thismove.Name}");
 
 
-            for (int j = 0; j < numbermove.Count; j++)
+            if (thismove.Color == "Black")
             {
-                foreach (var way in wayslist)
+                for (int j = 0; j < numbermove.Count; j++)
                 {
-
-                    if (numbermove[j] < way.Count && numbermove[j] > 0)
+                    foreach (var way in wayslist)
                     {
 
-                        tmp1 = numbermove[j];
-
-
-                        if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+                        if (numbermove[j] < way.Count && numbermove[j] > 0)
                         {
-                            list.Add(way[tmp1 - 1]);
+
+                            tmp1 = numbermove[j];
+
+
+                            if (way[tmp1 - 1].Color == "Empty" && way[tmp1 - 1].Color != "" && way[tmp1 - 1] != null)
+                            {
+                                list.Add(way[tmp1 - 1]);
+                            }
+
+
+
+                            if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+                            {
+                                list.Add(way[tmp1 - 2]);
+                            }
+
+
+
+
+                            if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
+                            {
+                                list.Add(way[tmp1 + 2]);
+                            }
+
                         }
+                    }
+                }
+            }
 
+            if(thismove.Color=="White")
+            {
+                for (int j = numbermove.Count-1; j > 0 ; j--)
+                {
+                    foreach (var way in wayslist)
+                    {
 
-
-                        if (way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 2] != null && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 2].Name != "")
+                        if (numbermove[j] < way.Count && numbermove[j] > 0)
                         {
-                            list.Add(way[tmp1 - 2]);
+
+                            tmp1 = numbermove[j];
+
+
+                            if (way[tmp1 + 1].Color == "Empty" && way[tmp1 + 1].Color != "" && way[tmp1 + 1] != null)
+                            {
+                                list.Add(way[tmp1 + 1]);
+                            }
+
+
+
+                            if (way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 2] != null && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 2].Name != "")
+                            {
+                                list.Add(way[tmp1 + 2]);
+                            }
+
+
+
+
+                            if (numbermove[j] - 2 < way.Count && way[tmp1 - 2].Color == "Empty" && way[tmp1 - 1].Color != "Empty" && way[tmp1 - 1].Color != thismove.Color && way[tmp1 - 2] != null)
+                            {
+                                list.Add(way[tmp1 - 2]);
+                            }
+
                         }
-
-
-
-
-                        if (numbermove[j] + 2 < way.Count && way[tmp1 + 2].Color == "Empty" && way[tmp1 + 1].Color != "Empty" && way[tmp1 + 1].Color != thismove.Color && way[tmp1 + 2] != null)
-                        {
-                            list.Add(way[tmp1 + 2]);
-                        }
-
                     }
                 }
             }
