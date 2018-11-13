@@ -19,6 +19,7 @@ namespace WCF.Services
         private Player Player;
         private static List<ICallbackDuplex> contracts = new List<ICallbackDuplex>();
         Ways ways = new Ways();
+        static List<List<Move>> _ways;
 
 
         public void StartGame(PlayerDTO player)
@@ -114,7 +115,7 @@ namespace WCF.Services
 
             List<Move> moves_ = new List<Move>();
 
-            List<List<Move>> _ways = ways.GetWays();
+           
 
 
             foreach (var w in _ways)
