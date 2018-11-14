@@ -18,6 +18,7 @@ namespace UI_Checkers_.Classes
         private Black_Game BG;
         private White_Game WG;
         string game = "";
+        static int path = 0;
         BitmapImage checkblack = new BitmapImage(new Uri(@"\Icon\1.png", UriKind.Relative));
         BitmapImage checkwhite = new BitmapImage(new Uri(@"\Icon\2.png", UriKind.Relative));
         BitmapImage kingblack = new BitmapImage(new Uri(@"\Icon\7.png", UriKind.Relative));
@@ -25,7 +26,7 @@ namespace UI_Checkers_.Classes
 
         public CallBackUI()
         {
-           
+            
         }
 
 
@@ -48,9 +49,9 @@ namespace UI_Checkers_.Classes
 
         public void MakeMoveDuplex(List<Move> moves)
         {
-            
+            ++path;
             if (game == "Black")
-            {
+            {               
                 foreach (var item in moves)
                 {
                     foreach (Button b in BG.BtnGrid.Children)
@@ -70,6 +71,14 @@ namespace UI_Checkers_.Classes
                             }
                         }
                     }
+                }
+                if (path % 2 != 0)
+                {
+                    BG.label.Content = "You turn";
+                }
+                else
+                {
+                    BG.label.Content = "Turn of opponent";
                 }
             }
             else
@@ -96,6 +105,14 @@ namespace UI_Checkers_.Classes
                             }
                         }
                     }
+                }
+                if (path % 2 == 0)
+                {
+                    WG.label.Content = "You turn";
+                }
+                else
+                {
+                    WG.label.Content = "Turn of opponent";
                 }
             }         
         }

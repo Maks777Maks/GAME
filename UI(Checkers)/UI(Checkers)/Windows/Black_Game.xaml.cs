@@ -36,7 +36,7 @@ namespace UI_Checkers_.Windows
         List<string> Songs = new List<string> { "1","2","3","4","5","6","7" };
 
         bool music = false;
-        bool turn = true;
+       // bool turn = false;
         bool first = true;
 
         public Black_Game(PlayerUI pl)
@@ -46,7 +46,7 @@ namespace UI_Checkers_.Windows
             this.DataContext = player;            
             Music.Content = (Canvas)this.TryFindResource("sound_mute");
 
-            label.Content = pl.NickName;
+            label.Content = "Turn of opponent";
 
             b8i.Source = checkblack;
             d8i.Source = checkblack;
@@ -115,9 +115,10 @@ namespace UI_Checkers_.Windows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (turn == false || button.Name + "i" == null) { return; }///переделать
+            
             if (first == true)
             {
+                if ((string)label.Content == "Turn of opponent" || ((button.Content as Border).Child as Image).Source != checkblack) { return; }
                 button.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                 button.VerticalContentAlignment = VerticalAlignment.Stretch;
                 (button.Content as Border).BorderBrush = new SolidColorBrush(Colors.Yellow);
@@ -187,8 +188,8 @@ namespace UI_Checkers_.Windows
 
                     }
                 }
-                movetmp = null;
-                list = null;
+                movetmp.Name = "";
+                list.Clear();
                 return;
             }
         }

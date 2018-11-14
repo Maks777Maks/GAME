@@ -348,20 +348,22 @@ namespace WCF.Services
                                 }
 
 
-
-                                if (v[i - 1].Color != v[i].Color && v[i - 1].Color != "Empty" && v[i - 2].Color == "Empty")
+                                if(i>1)
                                 {
+                                    if (v[i - 1].Color != v[i].Color && v[i - 1].Color != "Empty" && v[i - 2].Color == "Empty")
+                                    {
 
-                                    list.Add(v[i - 2]);
+                                        list.Add(v[i - 2]);
+                                    }
                                 }
-
-
-
-
-                                if (i + 2 < v.Count && v[i + 2].Color == "Empty" && v[i + 1].Color != "Empty" && v[i + 1].Color != v[i].Color && v[i + 2] != null)
+                                if(i!= v.Count-1)
                                 {
-                                    list.Add(v[i + 2]);
+                                    if (i + 2 < v.Count && v[i + 2].Color == "Empty" && v[i + 1].Color != "Empty" && v[i + 1].Color != v[i].Color && v[i + 2] != null)
+                                    {
+                                        list.Add(v[i + 2]);
+                                    }
                                 }
+                                
                             }
                     }
                 }
@@ -419,12 +421,13 @@ namespace WCF.Services
                             }
 
 
-
-                            if (v[i + 1].Color != v[i].Color && v[i + 1].Color != "Empty" && v[i + 2].Color == "Empty")
+                            if (i != v.Count - 1)
                             {
-                                list.Add(v[i + 2]);
+                                if (v[i + 1].Color != v[i].Color && v[i + 1].Color != "Empty" && v[i + 2].Color == "Empty")
+                                {
+                                    list.Add(v[i + 2]);
+                                }
                             }
-
 
 
 

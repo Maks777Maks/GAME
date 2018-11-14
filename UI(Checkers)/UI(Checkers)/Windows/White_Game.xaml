@@ -57,42 +57,42 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Background="Black">
             <Label Content="A" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 28 1"/>
             <Label Content="B" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="C" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="D" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="E" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="F" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="G" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
+            <Label Content="C" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="D" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="E" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="F" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="G" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
             <Label Content="H" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" Background="Black">
             <Label Content="A" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 28 1"/>
             <Label Content="B" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="C" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="D" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="E" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="F" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
-            <Label Content="G" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
+            <Label Content="C" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="D" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="E" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="F" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
+            <Label Content="G" Foreground="White" FontWeight="Bold" FontSize="20" Margin="29 1 29 1"/>
             <Label Content="H" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Orientation="Vertical" Background="Black">
-            <Label Content="8" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 52 1 18"/>
-            <Label Content="7" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="6" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="5" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="4" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="3" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="2" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="1" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
+            <Label Content="8" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 60 1 21"/>
+            <Label Content="7" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 28 1 21"/>
+            <Label Content="6" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="5" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="4" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="3" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="2" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="1" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Orientation="Vertical" Background="Black">
-            <Label Content="8" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 52 1 18"/>
-            <Label Content="7" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="6" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="5" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="4" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="3" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="2" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
-            <Label Content="1" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
+            <Label Content="8" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 60 1 21"/>
+            <Label Content="7" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 28 1 21"/>
+            <Label Content="6" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="5" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="4" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="3" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="2" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
+            <Label Content="1" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 23 1 21"/>
         </StackPanel>
         <Grid Name="BtnGrid" Grid.Column="2" Grid.Row="2">
             <Grid.ColumnDefinitions>
