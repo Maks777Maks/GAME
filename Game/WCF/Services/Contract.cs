@@ -115,7 +115,7 @@ namespace WCF.Services
 
             List<Move> moves_ = new List<Move>();
 
-           
+            List<List<Move>> _ways = ways.GetWays();
 
 
             foreach (var w in _ways)
@@ -239,12 +239,12 @@ namespace WCF.Services
 
             }
 
-           
+
             return moves_;
-            
 
 
         }
+
 
 
 
