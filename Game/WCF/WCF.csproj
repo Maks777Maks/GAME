@@ -64,6 +64,7 @@
     <Compile Include="Util\Move.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\Mapper.cs" />
+    <Compile Include="Util\Ways.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

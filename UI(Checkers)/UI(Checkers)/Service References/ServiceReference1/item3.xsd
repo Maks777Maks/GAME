@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/WCF.DTOModels" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/WCF.Util" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF.DTOModels" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCF.Util" />
   <xs:element name="GetPlayers">
     <xs:complexType>
       <xs:sequence />
@@ -45,34 +45,41 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="b" type="xs:boolean" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF.DTOModels" minOccurs="0" name="pl" nillable="true" type="q4:PlayerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MakeMoveDuplex">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="moves" nillable="true" type="q5:ArrayOfMove" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MakeMove">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="moves" nillable="true" type="q4:ArrayOfMove" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="move1" nillable="true" type="q6:Move" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="move2" nillable="true" type="q7:Move" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MakeMoveResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="MakeMoveResult" nillable="true" type="q5:ArrayOfMove" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ChekMove">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="move" nillable="true" type="q6:Move" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="move" nillable="true" type="q8:Move" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChekMoveResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="ChekMoveResult" nillable="true" type="q7:ArrayOfMove" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCF.Util" minOccurs="0" name="ChekMoveResult" nillable="true" type="q9:ArrayOfMove" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

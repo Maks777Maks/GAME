@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
-        Title="Autorization" Height="500" Width="500">
+        Title="Autorization" Height="500" Width="500"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#373737" />
@@ -33,9 +37,9 @@
             </Setter>
         </Style>
     </Window.Resources>
-            <Grid >
+            <Grid  Name="grid">
         <Grid.Background>
-            <ImageBrush ImageSource="http://www.ventes.com.tr/hafun/resim/DAMA_TAHTASI_1435649481.jpg"/>
+            <ImageBrush ImageSource="http://www.ventes.com.tr/hafun/resim/DAMA_TAHTASI_1435649481.jpg" Opacity="0.8"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

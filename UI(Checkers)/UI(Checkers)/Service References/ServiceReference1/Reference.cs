@@ -268,10 +268,10 @@ namespace UI_Checkers_.ServiceReference1 {
     public interface IContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContract/GetPlayers", ReplyAction="http://tempuri.org/IContract/GetPlayersResponse")]
-        UI_Checkers_.ServiceReference1.PlayerDTO[] GetPlayers();
+        System.Collections.Generic.List<UI_Checkers_.ServiceReference1.PlayerDTO> GetPlayers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContract/GetPlayers", ReplyAction="http://tempuri.org/IContract/GetPlayersResponse")]
-        System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.PlayerDTO[]> GetPlayersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI_Checkers_.ServiceReference1.PlayerDTO>> GetPlayersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContract/AddPlayer", ReplyAction="http://tempuri.org/IContract/AddPlayerResponse")]
         UI_Checkers_.ServiceReference1.PlayerDTO AddPlayer(string a, string b);
@@ -307,11 +307,11 @@ namespace UI_Checkers_.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public UI_Checkers_.ServiceReference1.PlayerDTO[] GetPlayers() {
+        public System.Collections.Generic.List<UI_Checkers_.ServiceReference1.PlayerDTO> GetPlayers() {
             return base.Channel.GetPlayers();
         }
         
-        public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.PlayerDTO[]> GetPlayersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI_Checkers_.ServiceReference1.PlayerDTO>> GetPlayersAsync() {
             return base.Channel.GetPlayersAsync();
         }
         
@@ -339,7 +339,10 @@ namespace UI_Checkers_.ServiceReference1 {
     public interface ICallbackCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICallback/GetInfo")]
-        void GetInfo(bool b);
+        void GetInfo(bool b, UI_Checkers_.ServiceReference1.PlayerDTO pl);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICallback/MakeMoveDuplex")]
+        void MakeMoveDuplex(System.Collections.Generic.List<UI_Checkers_.ServiceReference1.Move> moves);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -384,16 +387,16 @@ namespace UI_Checkers_.ServiceReference1 {
     public interface IMove {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/MakeMove", ReplyAction="http://tempuri.org/IMove/MakeMoveResponse")]
-        UI_Checkers_.ServiceReference1.Move[] MakeMove(UI_Checkers_.ServiceReference1.Move[] moves);
+        void MakeMove(UI_Checkers_.ServiceReference1.Move move1, UI_Checkers_.ServiceReference1.Move move2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/MakeMove", ReplyAction="http://tempuri.org/IMove/MakeMoveResponse")]
-        System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> MakeMoveAsync(UI_Checkers_.ServiceReference1.Move[] moves);
+        System.Threading.Tasks.Task MakeMoveAsync(UI_Checkers_.ServiceReference1.Move move1, UI_Checkers_.ServiceReference1.Move move2);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/ChekMove", ReplyAction="http://tempuri.org/IMove/ChekMoveResponse")]
-        UI_Checkers_.ServiceReference1.Move[] ChekMove(UI_Checkers_.ServiceReference1.Move move);
+        System.Collections.Generic.List<UI_Checkers_.ServiceReference1.Move> ChekMove(UI_Checkers_.ServiceReference1.Move move);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMove/ChekMove", ReplyAction="http://tempuri.org/IMove/ChekMoveResponse")]
-        System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<UI_Checkers_.ServiceReference1.Move>> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -423,19 +426,19 @@ namespace UI_Checkers_.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public UI_Checkers_.ServiceReference1.Move[] MakeMove(UI_Checkers_.ServiceReference1.Move[] moves) {
-            return base.Channel.MakeMove(moves);
+        public void MakeMove(UI_Checkers_.ServiceReference1.Move move1, UI_Checkers_.ServiceReference1.Move move2) {
+            base.Channel.MakeMove(move1, move2);
         }
         
-        public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> MakeMoveAsync(UI_Checkers_.ServiceReference1.Move[] moves) {
-            return base.Channel.MakeMoveAsync(moves);
+        public System.Threading.Tasks.Task MakeMoveAsync(UI_Checkers_.ServiceReference1.Move move1, UI_Checkers_.ServiceReference1.Move move2) {
+            return base.Channel.MakeMoveAsync(move1, move2);
         }
         
-        public UI_Checkers_.ServiceReference1.Move[] ChekMove(UI_Checkers_.ServiceReference1.Move move) {
+        public System.Collections.Generic.List<UI_Checkers_.ServiceReference1.Move> ChekMove(UI_Checkers_.ServiceReference1.Move move) {
             return base.Channel.ChekMove(move);
         }
         
-        public System.Threading.Tasks.Task<UI_Checkers_.ServiceReference1.Move[]> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<UI_Checkers_.ServiceReference1.Move>> ChekMoveAsync(UI_Checkers_.ServiceReference1.Move move) {
             return base.Channel.ChekMoveAsync(move);
         }
     }

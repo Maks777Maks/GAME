@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI_Checkers_.Classes;
+using UI_Checkers_.ServiceReference1;
 using UI_Checkers_.Util;
 using WMPLib;
 
@@ -24,7 +25,8 @@ namespace UI_Checkers_.Windows
     public partial class Black_Game : Window
     {
         public MediaPlayer player { get; set; }
-
+        List<Move> list = new List<Move>();
+        MoveUI movetmp = new MoveUI();
         BitmapImage checkblack = new BitmapImage(new Uri(@"\Icon\1.png",UriKind.Relative));
         BitmapImage checkwhite = new BitmapImage(new Uri(@"\Icon\2.png",UriKind.Relative));
         BitmapImage kingblack = new BitmapImage(new Uri(@"\Icon\7.png", UriKind.Relative));
@@ -34,45 +36,43 @@ namespace UI_Checkers_.Windows
         List<string> Songs = new List<string> { "1","2","3","4","5","6","7" };
 
         bool music = false;
-        bool first = false;
+        bool turn = true;
+        bool first = true;
 
-        public Black_Game()
+        public Black_Game(PlayerUI pl)
         {
             InitializeComponent();
             player = new MediaPlayer();
-            this.DataContext = player;
-            //if (white == true)
-            //{
-
-            //}
-            // Music.Source = sound_on;
+            this.DataContext = player;            
             Music.Content = (Canvas)this.TryFindResource("sound_mute");
 
-            B8.Source = checkblack;
-            D8.Source = checkblack;
-            F8.Source = checkblack;
-            H8.Source = checkblack;
-            A7.Source = checkblack;
-            C7.Source = checkblack;
-            E7.Source = checkblack;
-            G7.Source = checkblack;
-            B6.Source = checkblack;
-            D6.Source = checkblack;
-            F6.Source = checkblack;
-            H6.Source = checkblack;
+            label.Content = pl.NickName;
 
-            A1.Source = checkwhite;
-            C1.Source = checkwhite;
-            E1.Source = checkwhite;
-            G1.Source = checkwhite;
-            B2.Source = checkwhite;
-            D2.Source = checkwhite;
-            F2.Source = checkwhite;
-            H2.Source = checkwhite;
-            A3.Source = checkwhite;
-            C3.Source = checkwhite;
-            E3.Source = checkwhite;
-            G3.Source = checkwhite;
+            b8i.Source = checkblack;
+            d8i.Source = checkblack;
+            f8i.Source = checkblack;
+            h8i.Source = checkblack;
+            a7i.Source = checkblack;
+            c7i.Source = checkblack;
+            e7i.Source = checkblack;
+            g7i.Source = checkblack;
+            b6i.Source = checkblack;
+            d6i.Source = checkblack;
+            f6i.Source = checkblack;
+            h6i.Source = checkblack;
+
+            a1i.Source = checkwhite;
+            c1i.Source = checkwhite;
+            e1i.Source = checkwhite;
+            g1i.Source = checkwhite;
+            b2i.Source = checkwhite;
+            d2i.Source = checkwhite;
+            f2i.Source = checkwhite;
+            h2i.Source = checkwhite;
+            a3i.Source = checkwhite;
+            c3i.Source = checkwhite;
+            e3i.Source = checkwhite;
+            g3i.Source = checkwhite;
         }
 
         private void Music_on_of(object sender, RoutedEventArgs e)
@@ -114,26 +114,93 @@ namespace UI_Checkers_.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var tmp = sender as Button;
-            MoveUI move = new MoveUI();
-            move.Name = tmp.Name;
-            ServiceReference1.MoveClient contr = new ServiceReference1.MoveClient();
-           // contr.ChekMove(MapperUI. )
-
-            MessageBox.Show(tmp.Name);
-            _g1.BorderBrush = Brushes.Red;
-            if (first==true)
+            var button = sender as Button;
+            if (turn == false || button.Name + "i" == null) { return; }///переделать
+            if (first == true)
             {
+                button.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                button.VerticalContentAlignment = VerticalAlignment.Stretch;
+                (button.Content as Border).BorderBrush = new SolidColorBrush(Colors.Yellow);
 
+                MoveUI move = new MoveUI();
+                ServiceReference1.MoveClient contr = new ServiceReference1.MoveClient();
+                move.Name = button.Name;
+                list = contr.ChekMove(MapperUI.MoveUIToMove(move));
+                if (list.Count == 0)
+                {
+                    button.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    button.VerticalContentAlignment = VerticalAlignment.Center;
+                    (button.Content as Border).BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF612E1C"));
+
+                    return;
+                }
+                movetmp.Name = button.Name;
+                foreach (var item in list)
+                {
+                    foreach (Button b in BtnGrid.Children)
+                    {
+
+                        if (b.Content is Border && (b.Content as Border).Name == item.Name + "b")
+                        {
+                            b.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                            b.VerticalContentAlignment = VerticalAlignment.Stretch;
+                            (b.Content as Border).BorderBrush = new SolidColorBrush(Colors.Green);
+                        }
+                    }
+                }
                 first = false;
-                return;
             }
             else
             {
+                MoveUI move = new MoveUI();
 
-                first = true;
+                ServiceReference1.MoveClient contr = new ServiceReference1.MoveClient();
+
+                foreach (var item in list)
+                {
+                    if (button.Name == item.Name)
+                    {
+
+                        foreach (Button b in BtnGrid.Children)
+                        {
+
+                            foreach (var i in list)
+                            {
+                                if (b.Content is Border && (b.Content as Border).Name == i.Name + "b" || b.Content is Border && (b.Content as Border).Name == movetmp.Name + "b")
+                                {
+                                    b.HorizontalContentAlignment = HorizontalAlignment.Center;
+                                    b.VerticalContentAlignment = VerticalAlignment.Center;
+                                    (b.Content as Border).BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF612E1C"));
+                                }
+                            }
+
+                        }
+                        move.Name = button.Name;
+                        if (movetmp != null && move != null)
+                        {
+
+                            contr.MakeMove(MapperUI.MoveUIToMove(movetmp), MapperUI.MoveUIToMove(move));
+
+                            first = true;
+                        }
+
+
+                    }
+                }
+                movetmp = null;
+                list = null;
                 return;
             }
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

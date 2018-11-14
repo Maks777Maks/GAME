@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Checkers_.Classes;
 using UI_Checkers_.ServiceReference1;
+using UI_Checkers_.Util;
 using UI_Checkers_.Windows;
 
 namespace UI_Checkers_
@@ -26,7 +27,7 @@ namespace UI_Checkers_
     public partial class MainWindow : Window
     {
         public CallBackUI callbackhandler = new CallBackUI();
-        PlayerUI player = new PlayerUI();
+        public PlayerUI player = new PlayerUI();
         ObservableCollection<PlayerUI> players = new ObservableCollection<PlayerUI>();
 
         public MainWindow()
@@ -34,22 +35,21 @@ namespace UI_Checkers_
             InitializeComponent();
             datagrid.ItemsSource = players;
             Autorization autorization = new Autorization();
-            autorization.ShowDialog();
-
-
-            //player.ID = autorization.player.ID;
-            //player.NickName = autorization.player.NickName;
-            //player.Password = autorization.player.Password;
-            //player.Victory = autorization.player.Victory;
-            //player.Losing = autorization.player.Losing;
-            //player.Draw = autorization.player.Draw;
-
-
-
-            //White_Game white_game = new White_Game();
-            //white_game.ShowDialog();
-            //Black_Game black_game = new Black_Game();
-            //black_game.ShowDialog();
+            autorization.ShowDialog();         
+            player.ID = autorization.player.ID;
+            player.NickName = autorization.player.NickName;
+            player.Password = autorization.player.Password;
+            player.Victory = autorization.player.Victory;
+            player.Losing = autorization.player.Losing;
+            player.Draw = autorization.player.Draw;
+            this.DataContext = player;
+            ServiceReference1.ContractClient client = new ContractClient();            
+            foreach (var item in client.GetPlayers().OrderBy(x=> x.Victory))
+            {
+                var p = new PlayerUI { ID = item.ID, NickName = item.NickName, Draw = item.Draw, Losing = item.Losing, Password = item.Password, Victory = item.Victory };
+                players.Add(p);               
+            }
+            datagrid.DataContext = players;   
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,8 @@ namespace UI_Checkers_
             InstanceContext context = new InstanceContext(callbackhandler);
             ServiceReference1.CallbackClient client = new CallbackClient(context);
             this.Title = "Wait pls";
-            await client.StartGameAsync(null);
+            
+            await client.StartGameAsync(MapperUI.PlayerForDTO(player));
             this.Title = "Done";
             //if (start == true)
             //{
@@ -70,6 +71,20 @@ namespace UI_Checkers_
             //    black_game.ShowDialog();
             //}
         }
-        
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex()+1).ToString();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

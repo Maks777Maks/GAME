@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:UI_Checkers_.Windows"
         mc:Ignorable="d"
         Title="Checkers" Height="740" Width="800"
-    WindowStyle="SingleBorderWindow">
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="FillPath" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#FFEFCF38" Offset="0"/>
@@ -16,12 +19,12 @@
         <Geometry x:Key="sound_muteStyle0">F1 M 13.0018,21.0029L 17.0024,21.0029L 23.0032,16.0022L 23.0032,33.0046L 17.0024,27.0038L 13.0018,27.0038C 11.8971,27.0038 11.0015,26.1082 11.0015,25.0035L 11.0015,23.0032C 11.0015,21.8985 11.8971,21.0029 13.0018,21.0029 Z M 25.8469,28.0394L 29.3829,24.5034L 25.8469,20.9673L 27.9685,18.8457L 31.5045,22.3818L 35.0404,18.8458L 37.1621,20.9675L 33.6261,24.5034L 37.1621,28.0394L 35.0405,30.161L 31.5045,26.625L 27.9685,30.161L 25.8469,28.0394 Z</Geometry>
         <Geometry x:Key="sound_3Style0">F1 M 13.0018,21.0029L 17.0024,21.0029L 23.0032,16.0022L 23.0032,33.0046L 17.0024,27.0038L 13.0018,27.0038C 11.8971,27.0038 11.0015,26.1082 11.0015,25.0035L 11.0015,23.0032C 11.0015,21.8985 11.8971,21.0029 13.0018,21.0029 Z M 36.005,24.0034C 36.005,27.0413 34.7736,29.7917 32.7827,31.7826L 31.3683,30.3682C 32.9972,28.7393 34.0047,26.489 34.0047,24.0034C 34.0047,21.4913 32.9757,19.2196 31.3161,17.5868L 32.5252,15.9747C 34.6669,17.982 36.005,20.8364 36.005,24.0034 Z M 32.0045,24.0034C 32.0045,26.1913 31.0008,28.1449 29.4287,29.4287L 28.0041,28.0041C 29.2186,27.0918 30.0042,25.6393 30.0042,24.0034C 30.0042,22.3674 29.2186,20.9149 28.0041,20.0026L 29.4287,18.578C 31.0008,19.8618 32.0045,21.8154 32.0045,24.0034 Z M 28.0039,24.0034C 28.0039,25.3369 27.134,26.4672 25.9306,26.8578L 25.0035,25.0035C 25.5558,25.0035 26.0036,24.5557 26.0036,24.0034C 26.0036,23.451 25.5558,23.0032 25.0035,23.0032L 25.9306,21.1489C 27.134,21.5395 28.0039,22.6698 28.0039,24.0034 Z</Geometry>
 
-        <Canvas x:Key="sound_mute" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <Path Width="26.1606" Height="17.0024" Canvas.Left="6" Canvas.Top="10" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource sound_muteStyle0}" />
+        <Canvas x:Key="sound_mute" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="40" Height="40" >
+            <Path Width="20" Height="20" Canvas.Left="10" Canvas.Top="10" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource sound_muteStyle0}" />
             <Border />
         </Canvas>
-        <Canvas x:Key="sound_3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Path Width="25.0035" Height="17.0299" Canvas.Left="6" Canvas.Top="10" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource sound_3Style0}" />
+        <Canvas x:Key="sound_3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="40" Height="40" >
+            <Path Width="20" Height="20" Canvas.Left="10" Canvas.Top="10" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource sound_3Style0}" />
             <Border />
         </Canvas>
     </Window.Resources>
@@ -39,9 +42,18 @@
             <RowDefinition Height="640*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
-        <Button Click="Music_on_of" Name="Music"/>
+        <Button Style="{StaticResource StyleButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="40" Click="Close" Grid.Column="5">
+            <Canvas Name="close" Width="48" Height="48" Margin="4">
+                <Path Width="20" Height="20" Canvas.Left="7" Canvas.Top="5" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource closeStyle0}" />
+                <Border />
+            </Canvas>
+        </Button>
+        <Button Style="{StaticResource StyleButton}" Click="Music_on_of" Name="Music"/>
         <Slider Value="{Binding Volume}" Name="slider" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" Maximum="1"/>
-        <Label Name="label" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <Label Name="label1" Content="Good luck" Margin="200 1 50 1"  VerticalAlignment="Center"/>
+            <Label Name="label"  VerticalAlignment="Center" Margin="1"/>
+        </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Background="Black">
             <Label Content="A" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 28 1"/>
             <Label Content="B" Foreground="White" FontWeight="Bold" FontSize="20" Margin="28 1 27 1"/>
@@ -82,7 +94,7 @@
             <Label Content="2" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
             <Label Content="1" Foreground="White" FontWeight="Bold" FontSize="20" Margin="5 18 1 19"/>
         </StackPanel>
-        <Grid Grid.Column="2" Grid.Row="2">
+        <Grid Name="BtnGrid" Grid.Column="2" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -104,194 +116,194 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0" Background="#FFF5C72B"/>
-            <Button Grid.Column="1" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="B8"/>
+            <Button Name="b8" Grid.Column="1" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="b8b" BorderThickness="5">
+                    <Image Name="b8i"/>
                 </Border>
             </Button>
             <Button Grid.Column="2" Grid.Row="0" Background="#FFF5C72B"/>
-            <Button Grid.Column="3" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="D8"/>
+            <Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Name="d8" Grid.Column="3" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="d8b" BorderThickness="5">
+                    <Image Name="d8i"/>
                 </Border>
             </Button>
             <Button Grid.Column="4" Grid.Row="0" Background="#FFF5C72B"/>
-            <Button Grid.Column="5" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="F8"/>
+            <Button Name="f8" Grid.Column="5" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="f8b" BorderThickness="5">
+                    <Image Name="f8i"/>
                 </Border>
             </Button>
             <Button Grid.Column="6" Grid.Row="0" Background="#FFF5C72B"/>
-            <Button Grid.Column="7" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="H8"/>
+            <Button Name="h8" Grid.Column="7" Grid.Row="0" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="h8b" BorderThickness="5">
+                    <Image Name="h8i"/>
                 </Border>
             </Button>
-            <Button Grid.Column="0" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="A7"/>
+            <Button Name="a7" Grid.Column="0" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="a7b" BorderThickness="5">
+                    <Image Name="a7i"/>
                 </Border>
             </Button>
             <Button Grid.Column="1" Grid.Row="1" Background="#FFF5C72B"/>
-            <Button Grid.Column="2" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="C7"/>
+            <Button Name="c7" Grid.Column="2" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="c7b" BorderThickness="5">
+                    <Image Name="c7i"/>
                 </Border>
             </Button>
             <Button Grid.Column="3" Grid.Row="1" Background="#FFF5C72B"/>
-            <Button Grid.Column="4" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="E7"/>
+            <Button Name="e7" Grid.Column="4" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="e7b" BorderThickness="5">
+                    <Image Name="e7i"/>
                 </Border>
             </Button>
             <Button Grid.Column="5" Grid.Row="1" Background="#FFF5C72B"/>
-            <Button Grid.Column="6" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="G7"/>
+            <Button Name="g7" Grid.Column="6" Grid.Row="1" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="g7b" BorderThickness="5">
+                    <Image Name="g7i"/>
                 </Border>
             </Button>
             <Button Grid.Column="7" Grid.Row="1" Background="#FFF5C72B"/>
             <Button Grid.Column="0" Grid.Row="2" Background="#FFF5C72B"/>
-            <Button Grid.Column="1" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="B6"/>
+            <Button Name="b6" Grid.Column="1" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="b6b" BorderThickness="5">
+                    <Image Name="b6i"/>
                 </Border>
             </Button>
             <Button Grid.Column="2" Grid.Row="2" Background="#FFF5C72B"/>
-            <Button Grid.Column="3" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="D6"/>
+            <Button Name="d6" Grid.Column="3" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="d6b" BorderThickness="5">
+                    <Image Name="d6i"/>
                 </Border>
             </Button>
             <Button Grid.Column="4" Grid.Row="2" Background="#FFF5C72B"/>
-            <Button Grid.Column="5" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="F6"/>
+            <Button Name="f6" Grid.Column="5" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="f6b" BorderThickness="5">
+                    <Image Name="f6i"/>
                 </Border>
             </Button>
             <Button Grid.Column="6" Grid.Row="2" Background="#FFF5C72B"/>
-            <Button Grid.Column="7" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="H6"/>
+            <Button Name="h6" Grid.Column="7" Grid.Row="2" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="h6b" BorderThickness="5">
+                    <Image Name="h6i"/>
                 </Border>
             </Button>
-            <Button Grid.Column="0" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="A5"/>
+            <Button Name="a5" Grid.Column="0" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="a5b" BorderThickness="5">
+                    <Image Name="a5i"/>
                 </Border>
             </Button>
             <Button Grid.Column="1" Grid.Row="3" Background="#FFF5C72B"/>
-            <Button Grid.Column="2" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="C5"/>
+            <Button Name="c5" Grid.Column="2" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="c5b" BorderThickness="5">
+                    <Image Name="c5i"/>
                 </Border>
             </Button>
             <Button Grid.Column="3" Grid.Row="3" Background="#FFF5C72B"/>
-            <Button Grid.Column="4" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="E5"/>
+            <Button Name="e5" Grid.Column="4" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="e5b" BorderThickness="5">
+                    <Image Name="e5i"/>
                 </Border>
             </Button>
             <Button Grid.Column="5" Grid.Row="3" Background="#FFF5C72B"/>
-            <Button Grid.Column="6" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="G5"/>
+            <Button Name="g5" Grid.Column="6" Grid.Row="3" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="g5b" BorderThickness="5">
+                    <Image Name="g5i"/>
                 </Border>
             </Button>
             <Button Grid.Column="7" Grid.Row="3" Background="#FFF5C72B"/>
             <Button Grid.Column="0" Grid.Row="4" Background="#FFF5C72B"/>
-            <Button Grid.Column="1" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="B4"/>
+            <Button Name="b4" Grid.Column="1" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="b4b" BorderThickness="5">
+                    <Image Name="b4i"/>
                 </Border>
             </Button>
             <Button Grid.Column="2" Grid.Row="4" Background="#FFF5C72B"/>
-            <Button Grid.Column="3" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="D4"/>
+            <Button Name="d4" Grid.Column="3" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="d4b" BorderThickness="5">
+                    <Image Name="d4i"/>
                 </Border>
             </Button>
             <Button Grid.Column="4" Grid.Row="4" Background="#FFF5C72B"/>
-            <Button Grid.Column="5" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="F4"/>
+            <Button Name="f4" Grid.Column="5" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="f4b" BorderThickness="5">
+                    <Image Name="f4i"/>
                 </Border>
             </Button>
             <Button Grid.Column="6" Grid.Row="4" Background="#FFF5C72B"/>
-            <Button Grid.Column="7" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="H4"/>
+            <Button Name="h4" Grid.Column="7" Grid.Row="4" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="h4b" BorderThickness="5">
+                    <Image Name="h4i"/>
                 </Border>
             </Button>
-            <Button Grid.Column="0" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="A3"/>
+            <Button Name="a3" Grid.Column="0" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="a3b" BorderThickness="5">
+                    <Image Name="a3i"/>
                 </Border>
             </Button>
             <Button Grid.Column="1" Grid.Row="5" Background="#FFF5C72B"/>
-            <Button Grid.Column="2" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="C3"/>
+            <Button Name="c3" Grid.Column="2" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="c3b" BorderThickness="5">
+                    <Image Name="c3i"/>
                 </Border>
             </Button>
             <Button Grid.Column="3" Grid.Row="5" Background="#FFF5C72B"/>
-            <Button Grid.Column="4" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="E3"/>
+            <Button Name="e3" Grid.Column="4" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="e3b" BorderThickness="5">
+                    <Image Name="e3i"/>
                 </Border>
             </Button>
             <Button Grid.Column="5" Grid.Row="5" Background="#FFF5C72B"/>
-            <Button Grid.Column="6" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="G3"/>
+            <Button Name="g3" Grid.Column="6" Grid.Row="5" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="g3b" BorderThickness="5">
+                    <Image Name="g3i"/>
                 </Border>
             </Button>
             <Button Grid.Column="7" Grid.Row="5" Background="#FFF5C72B"/>
             <Button Grid.Column="0" Grid.Row="6" Background="#FFF5C72B"/>
-            <Button Grid.Column="1" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="B2"/>
+            <Button Name="b2" Grid.Column="1" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="b2b" BorderThickness="5">
+                    <Image Name="b2i"/>
                 </Border>
             </Button>
             <Button Grid.Column="2" Grid.Row="6" Background="#FFF5C72B"/>
-            <Button Grid.Column="3" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="D2"/>
+            <Button Name="d2" Grid.Column="3" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="d2b" BorderThickness="5">
+                    <Image Name="d2i"/>
                 </Border>
             </Button>
             <Button Grid.Column="4" Grid.Row="6" Background="#FFF5C72B"/>
-            <Button Grid.Column="5" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="F2"/>
+            <Button Name="f2" Grid.Column="5" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="f2b" BorderThickness="5">
+                    <Image Name="f2i"/>
                 </Border>
             </Button>
             <Button Grid.Column="6" Grid.Row="6" Background="#FFF5C72B"/>
-            <Button Grid.Column="7" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="H2"/>
+            <Button Name="h2" Grid.Column="7" Grid.Row="6" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="h2b" BorderThickness="5">
+                    <Image Name="h2i"/>
                 </Border>
             </Button>
-            <Button Grid.Column="0" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="A1"/>
+            <Button Name="a1" Grid.Column="0" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="a1b" BorderThickness="5">
+                    <Image Name="a1i"/>
                 </Border>
             </Button>
             <Button Grid.Column="1" Grid.Row="7" Background="#FFF5C72B"/>
-            <Button Grid.Column="2" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="C1"/>
+            <Button Name="c1" Grid.Column="2" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="c1b" BorderThickness="5">
+                    <Image Name="c1i"/>
                 </Border>
             </Button>
             <Button Grid.Column="3" Grid.Row="7" Background="#FFF5C72B"/>
-            <Button Grid.Column="4" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="E1"/>
+            <Button Name="e1" Grid.Column="4" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="e1b" BorderThickness="5">
+                    <Image Name="e1i"/>
                 </Border>
             </Button>
             <Button Grid.Column="5" Grid.Row="7" Background="#FFF5C72B"/>
-            <Button Grid.Column="6" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
-                <Border BorderThickness="5">
-                    <Image Name="G1"/>
+            <Button Name="g1" Grid.Column="6" Grid.Row="7" Background="#FF612E1C" Click="Button_Click">
+                <Border Name="g1b" BorderThickness="5">
+                    <Image Name="g1i"/>
                 </Border>
             </Button>
             <Button Grid.Column="7" Grid.Row="7" Background="#FFF5C72B"/>

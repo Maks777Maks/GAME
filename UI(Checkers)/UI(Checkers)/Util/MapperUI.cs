@@ -10,6 +10,32 @@ namespace UI_Checkers_.Util
 {
     public static class MapperUI
     {
+        public static Move MoveUIToMove(MoveUI m)
+        {
+            Move move = new Move();
+            move.Name = m.Name;
+            move.Queen = m.Queen;
+            move.goldWay = m.goldWay;
+            move.doubleWay = m.doubleWay;
+            move.Color = m.Color;
+            move.Border = m.Border;
+
+            return move;
+        }
+
+        public static MoveUI MoveToMoveUI(Move m)
+        {
+            MoveUI move = new MoveUI();
+            move.Name = m.Name;
+            move.Queen = m.Queen;
+            move.goldWay = m.goldWay;
+            move.doubleWay = m.doubleWay;
+            move.Color = m.Color;
+            move.Border = m.Border;
+
+            return move;
+        }
+
         public static PlayerUI PlayerFromDTO(PlayerDTO playerdto)
         {
             PlayerUI result = new PlayerUI();

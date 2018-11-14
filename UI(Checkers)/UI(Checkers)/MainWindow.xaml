@@ -5,52 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Checkers_"
         mc:Ignorable="d"
-        Background="#333"
-        Title="Checkers" Height="550" Width="625">
+        Background="#333"        
+        Title="Checkers" Height="550" Width="650"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="217*"/>
+            <ColumnDefinition Width="196*"/>
+            <ColumnDefinition Width="237*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource StyleButton}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="40" Click="Close" Grid.Column="5">
+                <Canvas Name="close" Width="48" Height="48" Margin="4">
+                    <Path Width="20" Height="20" Canvas.Left="7" Canvas.Top="5" Stretch="Fill" Fill="{StaticResource FillPath}" Data="{StaticResource closeStyle0}" />
+                    <Border />
+                </Canvas>
+            </Button>
+            <Label Content="Welcome" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="22"/>
+            <Label Content="{Binding NickName}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+            <Label Content="Win:" Grid.Row="3" FontSize="12" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <Label Content="{Binding Victory}" Grid.Row="3" Grid.Column="1" FontSize="12" Margin="1" VerticalAlignment="Center"/>
+            <Label Content="Draw:" Grid.Row="3" Grid.Column="2" FontSize="12" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <Label Content="{Binding Draw}" Grid.Row="3" Grid.Column="3" FontSize="12" Margin="1" VerticalAlignment="Center"/>
+            <Label Content="Lose:" Grid.Row="3" Grid.Column="4" FontSize="12" Margin="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <Label Content="{Binding Losing}" Grid.Row="3" Grid.Column="5" FontSize="12" Margin="1" VerticalAlignment="Center"/>
+        </Grid>
+
         <Calendar x:Name="calendar"/>
-        <DataGrid Name="datagrid" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" Margin="12" AutoGenerateColumns="False" Width="1000"
+        <DataGrid LoadingRow="datagrid_LoadingRow" Name="datagrid" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" Margin="15" AutoGenerateColumns="False"
                       RowDetailsVisibilityMode="VisibleWhenSelected" >
             <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <Border Margin="8" Padding="8" BorderThickness="2" BorderBrush="#FFFFFFFF" CornerRadius="5" MaxWidth="600">
-                            <TextBlock TextWrapping="Wrap" Foreground="#444" Text="{Binding XPath=Description}"/>
-                        </Border>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Border Margin="8" Padding="8" BorderThickness="2" BorderBrush="#FFFFFFFF" CornerRadius="5" MaxWidth="600">
+                        <TextBlock TextWrapping="Wrap" Foreground="#444" Text="{Binding XPath=Description}"/>
+                    </Border>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding XPath=@ID}" Header="Place"/>
-                <DataGridTextColumn Binding="{Binding XPath=@ID}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding XPath=Title}" Header="NickName" MinWidth="150"/>
-                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Victories"/>
-                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Draws"/>
-                <DataGridTextColumn Binding="{Binding XPath=Short}" Header="Defeats">
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding NickName}" Header="NickName" MinWidth="250"/>
+                <DataGridTextColumn Binding="{Binding Victory}" Header="Victories" MinWidth="100"/>
+                <DataGridTextColumn Binding="{Binding Draw}" Header="Draws" MinWidth="100"/>
+                <DataGridTextColumn Binding="{Binding Losing}" Header="Defeats" MaxWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="Wrap"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridCheckBoxColumn Binding="{Binding XPath=@Public}" Header="Online">
-                    <DataGridCheckBoxColumn.ElementStyle>
-                        <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGridCheckBoxColumn.ElementStyle>
-                </DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <!--<Button Click="Button_Click"/>-->
+        <Button Style="{StaticResource StyleButton}" Grid.Column="1" Margin="25" Content="Start Game" Click="Button_Click" FontSize="22" Foreground="#FFFD9804" FontWeight="Bold" FontStyle="Italic">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF585555" Offset="1"/>
+                    <GradientStop Color="#FE8F8D8D" Offset="0.082"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
