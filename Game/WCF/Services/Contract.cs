@@ -249,7 +249,7 @@ namespace WCF.Services
             contracts[1].MakeMoveDuplex(moves_);     
             
 
-
+            //////////
             //List<Move> tmp = new List<Move>();
             //Move m1 = new Move();
             //Move m2 = new Move();
